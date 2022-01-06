@@ -4,7 +4,7 @@ from urllib.parse import urlparse, parse_qs
 
 from classes.event import Event
 
-# Mobile Facebook pages don't rely on JavaScript, making it easier to scrape
+# Mobile Facebook pages don't use JavaScript, making it easier to scrape
 CSESOC_EVENTS_PAGE = "https://m.facebook.com/csesoc/events/"
 
 def remove_attrs(soup, whitelist=[]):
@@ -40,9 +40,9 @@ def scrape_event_page(href):
     time = summary[1]
     location = summary[3]
 
-    cover_photo = soup.find(id="event_header").find("img")["src"]
+    img = soup.find(id="event_header").find("img")["src"]
 
-    return Event(url, title, description, time, location, cover_photo)
+    return Event(url, title, description, time, location, img)
 
 def get_upcoming_events():
     page = requests.get(CSESOC_EVENTS_PAGE)
@@ -50,8 +50,7 @@ def get_upcoming_events():
 
     # Assuming all event links should be for upcoming events
     upcoming_events_links = soup.select("a[href*=\/events\/]")
-    upcoming_events_details = [scrape_event_page(a["href"]) for a in upcoming_events_links]
-    print(upcoming_events_details)
+    return [scrape_event_page(a["href"]) for a in upcoming_events_links]
 
 if __name__ == "__main__":
     get_upcoming_events()
