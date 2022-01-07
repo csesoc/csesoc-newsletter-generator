@@ -1,3 +1,3 @@
-def write_opportunities(a):
+def add_opportunities(a):
     with a.h3(style="color: blue;"):
         a("Get a job")
