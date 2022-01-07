@@ -12,3 +12,8 @@
 
 ## Useful Links
 - [https://www.htmlemailcheck.com/check/](https://www.htmlemailcheck.com/check/)
+
+## Things to do
+- gif soc-announce cover photo, gotta look cool!
+- check dark mode outlook doesn't fuck it up
+- scrape opportunities form

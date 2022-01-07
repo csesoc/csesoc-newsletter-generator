@@ -9,6 +9,9 @@ from newsletter.articles import add_articles
 from newsletter.opportunities import add_opportunities
 from newsletter.footer import add_footer
 
+def trtd(a):
+    return a.tr().td(align="center", valign="top")
+
 if __name__ == "__main__":
     facebook_events = get_upcoming_events()
     media_articles = get_articles()
@@ -45,17 +48,14 @@ if __name__ == "__main__":
                 add_header(a)
             with a.body().tr().td(align="center", valign="top").table(id="emailBody", border="0", cellpadding="20", cellspacing="0", width="100%"):
 
-                if facebook_events:
-                    with a.tr().td(align="center", valign="top").table(id="upcomingEvents", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                        add_events(a, facebook_events)
+                with a.tr().td(align="center", valign="top").table(id="upcomingEvents", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
+                    add_events(a, facebook_events)
 
-                if media_articles:
-                    with a.tr().td(align="center", valign="top").table(id="mediaArticles", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                        add_articles(a, media_articles)
+                with a.tr().td(align="center", valign="top").table(id="mediaArticles", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
+                    add_articles(a, media_articles)
 
-                if opportunities:
-                    with a.tr().td(align="center", valign="top").table(id="opportunities", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                        add_opportunities(a, opportunities)
+                with a.tr().td(align="center", valign="top").table(id="opportunities", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
+                    add_opportunities(a, opportunities)
 
             with a.tfoot().tr().td(align="center", valign="top").table(id="emailFooter", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
                 add_footer(a)

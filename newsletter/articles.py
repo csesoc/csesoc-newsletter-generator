@@ -51,6 +51,9 @@ def add_article(a, article):
                                                             a('READ ARTICLE')
 
 def add_articles(a, articles):
+    if not articles:
+        return
+
     add_articles_section_header(a)
     for article in articles:
         add_article(a, article)

@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
+from scrapers.helpers import remove_attrs
+
 # Mobile Facebook pages don't use JavaScript, making it easier to scrape
 CSESOC_EVENTS_PAGE = "https://m.facebook.com/csesoc/events/"
 
@@ -20,14 +22,6 @@ class Event:
     def __repr__(self):
         return str(self.__class__) + ": " + str(self.__dict__)
 
-def remove_attrs(soup, whitelist=[]):
-    for attr in [attr for attr in soup.attrs if attr not in whitelist]:
-        del soup[attr]
-
-    for tag in soup.findAll(True):
-        for attr in [attr for attr in tag.attrs if attr not in whitelist]:
-            del tag[attr]
-
 def replace_referral_link(a):
     if "lm.facebook.com" not in a["href"]:
         return
@@ -45,7 +39,7 @@ def scrape_event_page(href):
     title = soup.find_all("h1")[-1].get_text()
 
     description = soup.find(id="event_tabs").find(text="Details").find_next("div")
-    remove_attrs(description, ["href", "target"])
+    remove_attrs(description)
     for a in description.find_all("a"):
         replace_referral_link(a)
 

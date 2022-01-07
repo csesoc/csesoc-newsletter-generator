@@ -56,6 +56,9 @@ def add_event(a, event):
                                                             a('SEE MORE')
 
 def add_events(a, events):
+    if not events:
+        return
+
     add_events_section_header(a)
     for event in events:
         add_event(a, event)
