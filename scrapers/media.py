@@ -1,9 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
 
-from classes.article import Article
-
 MEDIA_WEBSITE = "https://media.csesoc.org.au"
+
+class Article:
+    def __init__(self, url, title, description, img):
+        self.url = url
+        self.title = title
+        self.description = description
+        self.img = img
+
+    def __str__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
+
+    def __repr__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
 
 def scrape_article(article):
     url = f"{MEDIA_WEBSITE}{article.find('a')['href']}"
@@ -21,4 +32,11 @@ def get_articles(max=3):
     return [scrape_article(article) for article in articles]
 
 if __name__ == "__main__":
-    get_articles()
+    articles = get_articles()
+
+    for article in articles:
+        print("URL:  ", article.url)
+        print("TITLE:", article.title)
+        print("IMG:  ", article.img)
+        print("DESC: ", article.description)
+        print()

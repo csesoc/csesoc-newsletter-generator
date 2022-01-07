@@ -2,10 +2,23 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
-from classes.event import Event
-
 # Mobile Facebook pages don't use JavaScript, making it easier to scrape
 CSESOC_EVENTS_PAGE = "https://m.facebook.com/csesoc/events/"
+
+class Event:
+    def __init__(self, url, title, description, time, location, img):
+        self.url = url
+        self.title = title
+        self.description = description
+        self.time = time
+        self.location = location
+        self.img = img
+
+    def __str__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
+
+    def __repr__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
 
 def remove_attrs(soup, whitelist=[]):
     for attr in [attr for attr in soup.attrs if attr not in whitelist]:
