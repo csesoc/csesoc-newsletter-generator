@@ -9,15 +9,22 @@ from newsletter.articles import add_articles
 from newsletter.opportunities import add_opportunities
 from newsletter.footer import add_footer
 
-def trtd(a):
-    return a.tr().td(align="center", valign="top")
+class SocAnnounceAirium(Airium):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def trtd(self):
+        return self.tr().td(align="center", valign="top")
+
+    def trtdtable(self, id, width="100%"):
+        return self.trtd().table(id=id, border="0", cellpadding="20", cellspacing="0", width=width)
 
 if __name__ == "__main__":
     facebook_events = get_upcoming_events()
     media_articles = get_articles()
     opportunities = get_opportunities()
 
-    a = Airium()
+    a = SocAnnounceAirium()
     a('<!DOCTYPE html>')
     with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-microsoft-com:office:office',
  'xmlns:v': 'urn:schemas-microsoft-com:vml'}):
@@ -43,22 +50,27 @@ if __name__ == "__main__":
                 a('@media only screen and (max-width:480px) {.height-fix-sponsor {height:185px!important;}}')
 
         # nesting content in at least two tables deep is best practice
-        with a.body().table(id="bodyTable", border="0", cellpadding="0", cellspacing="0", height="100%", width="100%").tr().td(align="center", valign="top").table(id="emailContainer", border="0", cellpadding="20", cellspacing="0", width="800"):
-            with a.thead().tr().td(align="center", valign="top").table(id="emailHeader", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                add_header(a)
-            with a.body().tr().td(align="center", valign="top").table(id="emailBody", border="0", cellpadding="20", cellspacing="0", width="100%"):
-
-                with a.tr().td(align="center", valign="top").table(id="upcomingEvents", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                    add_events(a, facebook_events)
-
-                with a.tr().td(align="center", valign="top").table(id="mediaArticles", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                    add_articles(a, media_articles)
-
-                with a.tr().td(align="center", valign="top").table(id="opportunities", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                    add_opportunities(a, opportunities)
-
-            with a.tfoot().tr().td(align="center", valign="top").table(id="emailFooter", border="0", cellpadding="20", cellspacing="0", width="100%").tr().td(align="center", valign="top"):
-                add_footer(a)
+        with a.body().table(id="bodyTable", border="0", cellpadding="0", cellspacing="0", height="100%", width="100%"):
+            with a.trtdtable(id="emailContainer", width="800"):
+                with a.thead():
+                    with a.trtdtable(id="emailHeader"):
+                        with a.trtd():
+                            add_header(a)
+                with a.tbody():
+                    with a.trtdtable(id="emailBody"):
+                        with a.trtdtable("upcomingEvents"):
+                            with a.trtd():
+                                add_events(a, facebook_events)
+                        with a.trtdtable(id="mediaArticles"):
+                            with a.trtd():
+                                add_articles(a, media_articles)
+                        with a.trtdtable(id="opportunities"):
+                            with a.trtd():
+                                add_opportunities(a, opportunities)
+                with a.tfoot():
+                    with a.trtdtable(id="emailFooter"):
+                        with a.trtd():
+                            add_footer(a)
 
     with open("soc-announce.html", "w") as f:
         f.write(str(a))
