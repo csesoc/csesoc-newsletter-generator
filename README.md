@@ -9,6 +9,8 @@
 - Always use inline CSS because sometimes the `<head>` (which includes the CSS stylesheet) is removed, leaving only the `<body>`
   - [https://customer.io/blog/how-to-make-css-play-nice-in-html-emails-without-breaking-everything/](https://customer.io/blog/how-to-make-css-play-nice-in-html-emails-without-breaking-everything/)
 - Always use `<table>` because it ensures tehy will look good across all devices
+- `<hr>` don't render well in email HTML
+- Every `<tr>` needs a `<td>` inside
 
 ## Examples
 - Arc Student Life newsletters

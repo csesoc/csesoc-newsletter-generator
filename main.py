@@ -1,4 +1,5 @@
 from airium import Airium
+from newsletter.styles import LIGHT_GREY
 from scrapers.facebook import get_upcoming_events
 from scrapers.media import get_articles
 from scrapers.opportunities import get_opportunities
@@ -17,8 +18,8 @@ class SocAnnounceAirium(Airium):
     def trtd(self):
         return self.tr().td(align="center", valign="top")
 
-    def trtdtable(self, id, width="100%"):
-        return self.trtd().table(id=id, border="0", cellpadding="20", cellspacing="0", width=width)
+    def trtdtable(self, id, width="100%", cellpadding="0", style=""):
+        return self.trtd().table(id=id, width=width, cellpadding=cellpadding, style=style)
 
 if __name__ == "__main__":
     facebook_events = get_upcoming_events()
@@ -51,27 +52,28 @@ if __name__ == "__main__":
                 a('@media only screen and (max-width:480px) {.height-fix-sponsor {height:185px!important;}}')
 
         # nesting content in at least two tables deep is best practice
-        with a.body().table(id="bodyTable", border="0", cellpadding="0", cellspacing="0", height="100%", width="100%"):
-            with a.trtdtable(id="emailContainer", width="800"):
-                with a.thead():
-                    with a.trtdtable(id="emailHeader"):
-                        with a.trtd():
-                            add_header(a)
-                with a.tbody():
-                    with a.trtdtable(id="emailBody"):
-                        with a.trtdtable("upcomingEvents"):
+        with a.body().table(id="bodyTable", width="100%"):
+            with a.trtdtable(id="emailContainer", width="800", cellpadding="50", style=f"background: {LIGHT_GREY};"):
+                with a.trtdtable(id="emailContent", width="700", style="background: white;"):
+                    with a.thead():
+                        with a.trtdtable(id="emailHeader"):
                             with a.trtd():
-                                add_events(a, facebook_events)
-                        with a.trtdtable(id="mediaArticles"):
+                                add_header(a)
+                    with a.tbody():
+                        with a.trtdtable(id="emailBody"):
+                            with a.trtdtable("upcomingEvents"):
+                                with a.trtd():
+                                    add_events(a, facebook_events)
+                            with a.trtdtable(id="mediaArticles"):
+                                with a.trtd():
+                                    add_articles(a, media_articles)
+                            with a.trtdtable(id="opportunities"):
+                                with a.trtd():
+                                    add_opportunities(a, opportunities)
+                    with a.tfoot():
+                        with a.trtdtable(id="emailFooter"):
                             with a.trtd():
-                                add_articles(a, media_articles)
-                        with a.trtdtable(id="opportunities"):
-                            with a.trtd():
-                                add_opportunities(a, opportunities)
-                with a.tfoot():
-                    with a.trtdtable(id="emailFooter"):
-                        with a.trtd():
-                            add_footer(a)
+                                add_footer(a)
 
     with open("soc-announce.html", "w") as f:
         f.write(str(a))

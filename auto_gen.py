@@ -57,7 +57,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%')
                         a('<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   END divider to upcoming events  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->')
                         a('<!-- START Intro / Upcoming Events --------->')
@@ -66,7 +66,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                 with a.tbody():
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;'):
-                                            with a.div(klass='mj-column-px-500 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;'):
+                                            with a.div(klass='mj-column-px-500 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='center', style='font-size:0px;padding:10px 25px;word-break:break-word;'):
@@ -84,7 +84,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:10px;word-break:break-word;'):
@@ -95,7 +95,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                                                         with a.td(style='width:280px;'):
                                                                             a.img(height='auto', src='https://scontent.fsyd11-1.fna.fbcdn.net/v/t39.30808-6/p180x540/269600549_5177815778918019_3850127099860235996_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=340051&_nc_ohc=fbUOTNWsN68AX8mefrS&_nc_ht=scontent.fsyd11-1.fna&oh=00_AT_Wp4HGCVJFOKrCZGHjCNII9gsVIMhf6Ulbe1vozG-TRg&oe=61DACE75', style='border:0;display:inline-block;outline:none;text-decoration:none;height:auto;width:100%;', width='280')
                                             a('<!-- right paragraph -->')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:9px 25px;word-break:break-word;'):
@@ -169,7 +169,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:10px;word-break:break-word;'):
@@ -179,7 +179,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                                                         a('<!-- EVENT IMAGE -->')
                                                                         with a.td(style='width:280px;'):
                                                                             a.img(height='auto', src='https://scontent.fsyd11-2.fna.fbcdn.net/v/t39.30808-6/269977910_5165203386845925_5435982950809456294_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=340051&_nc_ohc=5oVD12mg_98AX_PNlfv&tn=BCkbZmTQ7CMQkVCf&_nc_ht=scontent.fsyd11-2.fna&oh=00_AT_5HI0zu8M_sH-4633Vuop_FuwN6Z5QA1d_oIwQqVZEZA&oe=61DA8C30', style='border:0;display:inline-block;outline:none;text-decoration:none;height:auto;width:100%;', width='280')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:9px 25px;word-break:break-word;'):
@@ -254,7 +254,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:10px;word-break:break-word;'):
@@ -264,7 +264,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                                                         a('<!-- EVENT IMAGE -->')
                                                                         with a.td(style='width:280px;'):
                                                                             a.img(height='auto', src='https://scontent.fsyd11-2.fna.fbcdn.net/v/t39.30808-6/266194071_5083182691714662_7054140190762118316_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=340051&_nc_ohc=Vo2pXq24PpkAX_vafy_&_nc_ht=scontent.fsyd11-2.fna&oh=00_AT_j4Fa371TBMiI31UKnQpqZu_JSSKYC1YupVazlBDCW4w&oe=61DBC454', style='border:0;display:inline-block;outline:none;text-decoration:none;height:auto;width:100%;', width='280')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:9px 25px;word-break:break-word;'):
@@ -324,7 +324,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%')
                         a('<!-- START Intro / Upcoming Events --------->')
                         with a.div(style='background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:600px;'):
@@ -332,7 +332,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                 with a.tbody():
                                     with a.tr():
                                         with a.td(style='direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;'):
-                                            with a.div(klass='mj-column-px-500 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;'):
+                                            with a.div(klass='mj-column-px-500 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='center', style='font-size:0px;padding:10px 25px;word-break:break-word;'):
@@ -351,7 +351,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
                                             a('<!-- Left image -->')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:10px;word-break:break-word;'):
@@ -362,7 +362,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                                                         with a.td(style='width:280px;'):
                                                                             a.img(height='auto', src='https://media.csesoc.org.au/content/images/size/w2000/2021/12/268181654_592110158538292_8335788803388188583_n.png', style='border:0;display:inline-block;outline:none;text-decoration:none;height:auto;width:100%;', width='280')
                                             a('<!-- right paragraph -->')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:9px 25px;word-break:break-word;'):
@@ -393,7 +393,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                         with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
                                             a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
                                             a('<!-- Left image -->')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:10px;word-break:break-word;'):
@@ -404,7 +404,7 @@ with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-mic
                                                                         with a.td(style='width:280px;'):
                                                                             a.img(height='auto', src='https://media.csesoc.org.au/content/images/size/w600/2021/11/Post-grad-guide-post--Facebook-Cover-.jpg', style='border:0;display:inline-block;outline:none;text-decoration:none;height:auto;width:100%;', width='280')
                                             a('<!-- right paragraph -->')
-                                            with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
+                                            with a.div(klass='mj-column-per-50 ', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                                                 with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                                     with a.tr():
                                                         with a.td(align='left', style='font-size:0px;padding:9px 25px;word-break:break-word;'):

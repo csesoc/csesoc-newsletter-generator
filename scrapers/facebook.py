@@ -1,4 +1,6 @@
 import requests
+import re
+from datetime import datetime
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
@@ -30,6 +32,19 @@ def replace_referral_link(a):
     queries = parse_qs(parsed.query)
     a["href"] = queries["u"][0]
 
+def format_event_time(event_time):
+    # Remove timezones in string (it's gonna be Sydney)
+    event_time = re.sub(r" UTC\+\d+", "", event_time)
+
+    # Convert all 24-hour times to 12-hour times
+    matches = re.findall(r"((2[0-3]|[01]?[0-9]):([0-5]?[0-9]))", event_time)
+    for match in matches:
+        time = match[0]
+        d = datetime.strptime(time, "%H:%M")
+        event_time = event_time.replace(time, d.strftime("%-I:%M %p"))
+
+    return event_time
+
 def scrape_event_page(href):
     page = requests.get(f"https://m.facebook.com{href}")
     soup = BeautifulSoup(page.content, "html.parser")
@@ -44,7 +59,7 @@ def scrape_event_page(href):
         replace_referral_link(a)
 
     summary = soup.find(id="event_summary").find_all(text=True)
-    time = summary[1]
+    time = format_event_time(summary[1])
     location = summary[3]
 
     img = soup.find(id="event_header").find("img")["src"]
@@ -57,6 +72,7 @@ def get_upcoming_events():
 
     # Assuming all event links should be for upcoming events
     upcoming_events_links = soup.select("a[href*=\/events\/]")
+    upcoming_events_links.reverse()
     return [scrape_event_page(a["href"]) for a in upcoming_events_links]
 
 if __name__ == "__main__":
