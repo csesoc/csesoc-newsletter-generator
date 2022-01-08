@@ -13,6 +13,7 @@ class SocAnnounceAirium(Airium):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+    # These custom functions must be first in a chain, e.g. `a.trtd().div()...` and NOT `a.div().trtd()...``
     def trtd(self):
         return self.tr().td(align="center", valign="top")
 

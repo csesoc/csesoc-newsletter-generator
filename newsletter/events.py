@@ -1,3 +1,6 @@
+from newsletter.components import add_divider
+
+
 def add_events_section_header(a):
     with a.div(style='background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:600px;'):
         with a.table(align='center', border='0', cellpadding='0', cellspacing='0', role='presentation', style='background:#ffffff;background-color:#ffffff;width:100%;'):
@@ -21,7 +24,6 @@ def add_event(a, event):
             with a.tbody():
                 with a.tr():
                     with a.td(style='direction:ltr;font-size:0px;padding:5px 0;text-align:center;vertical-align:top;'):
-                        a.p(style='border-top:dashed 1px lightgrey;font-size:1;margin:0px auto;width:100%;padding-bottom:15px;')
                         with a.div(klass='mj-column-per-50 outlook-group-fix', style='font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:50%;'):
                             with a.table(border='0', cellpadding='0', cellspacing='0', role='presentation', style='vertical-align:top;', width='100%'):
                                 with a.tr():
@@ -60,5 +62,7 @@ def add_events(a, events):
         return
 
     add_events_section_header(a)
+    add_divider(a)
     for event in events:
         add_event(a, event)
+        add_divider(a)
