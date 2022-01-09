@@ -1,5 +1,5 @@
 from newsletter.components import add_button, add_divider, add_section_header
-from newsletter.styles import CAPTION, DARK_GREY, DESC, LIGHT_GREY, TITLE
+from newsletter.styles import CAPTION, DESC, TITLE
 
 
 def add_event(a, event):
