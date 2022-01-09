@@ -21,12 +21,13 @@ DESC = f"""
     font-family: {UBUNTU};
     font-size: 13px;
     line-height: 1.4;
+    min-height: 60px;
     color: {DARK_GREY};
 """
 
 CAPTION = f"""
     font-family: {UBUNTU};
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
     color: {DARK_GREY};
 """
@@ -39,4 +40,5 @@ BUTTON = f"""
     text-transform: uppercase;
     text-align: center;
     border-radius: 3px;
+    margin-top: 20px;
 """
