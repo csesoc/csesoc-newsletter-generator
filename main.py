@@ -1,9 +1,9 @@
 from airium import Airium
-from newsletter.styles import LIGHT_GREY
 from scrapers.facebook import get_upcoming_events
 from scrapers.media import get_articles
 from scrapers.opportunities import get_opportunities
 
+from newsletter.styles import LIGHT_GREY
 from newsletter.header import add_header
 from newsletter.events import add_events
 from newsletter.articles import add_articles
