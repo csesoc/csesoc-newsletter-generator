@@ -8,8 +8,25 @@ CSESOC_GREY = "#40404C"
 # Fonts
 HELVETICA = "Helvetica, Arial, sans-serif"
 UBUNTU = "Ubuntu, Helvetica, Arial, sans-serif"
+UBUNTU_MONO = "'Ubuntu Mono', monospace"
 
 # Classes
+SECTION_BACKGROUND = f"""
+    background: red;
+"""
+
+SECTION_HEADER = f"""
+    font-family: {HELVETICA};
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 2;
+"""
+    # width: 100%;
+    # background: red;
+    # letter-spacing: 10px;
+
 TITLE = f"""
     font-family: {HELVETICA};
     font-size: 18px;
@@ -17,6 +34,7 @@ TITLE = f"""
     margin-block-start: 0;
     margin-block-end: 10px;
 """
+
 DESC = f"""
     font-family: {UBUNTU};
     font-size: 13px;
@@ -41,4 +59,9 @@ BUTTON = f"""
     text-align: center;
     border-radius: 3px;
     margin-top: 20px;
+"""
+
+DIVIDER = f"""
+    border-top: 1px dashed {LIGHT_GREY};
+    width: 100%;
 """

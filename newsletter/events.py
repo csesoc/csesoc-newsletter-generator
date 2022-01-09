@@ -27,7 +27,7 @@ def add_events(a, events):
     if not events:
         return
 
-    add_section_header(a, "Upcoming Events")
+    add_section_header(a, "Events")
     add_divider(a)
     for event in events:
         add_event(a, event)

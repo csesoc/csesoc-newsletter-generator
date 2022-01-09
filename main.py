@@ -36,6 +36,7 @@ if __name__ == "__main__":
             a.meta(content='text/html; charset=UTF-8', **{'http-equiv': 'Content-Type'})
             a.meta(content='width=device-width, initial-scale=1', name='viewport')
             a.link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700', rel='stylesheet', type='text/css')
+            a.link(href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap", rel="stylesheet", type='text/css')
             with a.style(type='text/css'):
                 a('#outlook a {padding: 0;}.ReadMsgBody {width: 100%;}.ExternalClass {width: 100%;}.ExternalClass * {line-height: 100%;}body {margin: 0;padding: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}table,td {border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;}img {border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;}p {display: block;margin: 13px 0;}a {text-decoration:none;}')
             with a.style(type='text/css'):
