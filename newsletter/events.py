@@ -22,12 +22,6 @@ def add_event(a, event):
                 a.div(_t=event.description, style=DESC)
             with a.tr().td():
                 add_button(a, event.url, "See more")
-    #                 with a.tr():
-    #                     with a.td(align='center', style='font-size:0px;padding:10px 25px;word-break:break-word;', **{'vertical-align': 'middle'}):
-    #                         with a.table(align='center', border='0', cellpadding='0', cellspacing='0', role='presentation', style='border-collapse:separate;width:100%;line-height:100%;'):
-    #                             with a.tr():
-    #                                 with a.td(align='center', bgcolor='#1051ea', role='presentation', style='border:none;border-radius:3px;cursor:auto;padding:4px 25px;background:#1051ea;color:#ffffff;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;Margin:0;text-decoration:none;text-transform:none;', valign='middle'):
-    #                                     add_button(a, event.url, "See more")
 
 def add_events(a, events):
     if not events:

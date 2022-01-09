@@ -22,8 +22,6 @@ def add_section_header(a, section_name):
                                             a('___')
 
 def add_button(a, url, text):
-    with a.a(href=url, style='text-decoration:none;', target='_blank'):
-        with a.table(style=BUTTON).tr().td():
+    with a.a(href=url, target='_blank'):
+        with a.table(style=BUTTON, width="100%", cellpadding="10").tr().td():
             a(text)
-        # with a.p(style='background:#1051ea;color:#ffffff;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:200%;Margin:0;text-decoration:none;text-transform:uppercase;'):
-        #     a(text)

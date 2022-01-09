@@ -38,4 +38,5 @@ BUTTON = f"""
     font-size: 13px;
     text-transform: uppercase;
     text-align: center;
+    border-radius: 3px;
 """
