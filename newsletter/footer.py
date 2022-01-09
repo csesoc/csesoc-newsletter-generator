@@ -1,40 +1,49 @@
+from newsletter.styles import DARK_GREY, SOCIALS
+
+
+SPONSORS_IMAGE = "https://i.imgur.com/XvCLqIg.png"
+
+LINKS = {
+    "Facebook Page": "https://www.facebook.com/csesoc",
+    "Facebook Community Group": "https://www.facebook.com/groups/csesoc/",
+    "Instagram": "https://www.instagram.com/csesoc_unsw/",
+    "TikTok": "https://www.tiktok.com/@csesoc",
+    "LinkedIn": "https://www.linkedin.com/company/csesoc",
+    "YouTube": "https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg/",
+    "Discord": "https://cseso.cc/discord",
+}
+
+def add_links(a):
+    """ Formats links in the format LINK | LINK | LINK """
+
+    for i, (name, link) in enumerate(LINKS.items()):
+        a.a(href=link, target="_blank", _t=name, style=f"color: {DARK_GREY}")
+
+        if i != len(LINKS) - 1:
+            a("|")
 
 def add_sponsors(a):
-    with a.div(klass='height-fix-sponsor', style='background:url(https://i.imgur.com/XvCLqIg.png) bottom center / contain no-repeat;Margin:0px auto;max-width:600px;height:315px;'):
-        with a.div(style='line-height:0;font-size:0;'):
-            with a.table(align='center', border='0', cellpadding='0', cellspacing='0', role='presentation', style='background:top center / contain no-repeat;width:100%;'):
-                with a.tbody():
-                    with a.tr():
-                        a.td(style='direction:ltr;font-size:0px;padding: 0px 0;text-align:center;vertical-align:top;')
-    with a.div(style='background:#3c54ec;background-color:#3c54ec;Margin:0px auto;max-width:600px;'):
-        with a.table(align='center', border='0', cellpadding='0', cellspacing='0', role='presentation', style='background:#3c54ec;background-color:#3c54ec;width:100%;'):
-            with a.tbody():
-                with a.tr():
-                    with a.td(style='direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;'):
-                        with a.div(style='font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:white;text-decoration:none!important;'):
-                            a('2021 Sponsors')
+    a.div(style=f'background: url({SPONSORS_IMAGE}) bottom center / contain no-repeat; height: 370px;')
 
 def add_socials(a):
-    with a.div(style='background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px;'):
-        with a.table(align='center', border='0', cellpadding='0', cellspacing='0', role='presentation', style='background:#f0f0f0;background-color:#f0f0f0;width:100%;'):
-            with a.tbody():
-                with a.tr():
-                    with a.td(style='direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;'):
-                        with a.div(style='font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:3;text-align:center;color:#888888;'):
-                            a.a(href='https://www.facebook.com/csesoc', style='color:#888888;', _t='Facebook Page')
-                            a('|')
-                            a.a(href='https://www.facebook.com/groups/csesoc/', style='color:#888888;', _t='Facebook Group')
-                            a('|')
-                            a.a(href='https://www.linkedin.com/company/csesoc/about/', style='color:#888888;', _t='LinkedIn')
-                        with a.div(style='font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:3;text-align:center;color:#888888;'):
-                            a('Contact:')
-                            a.b(_t='csesoc@csesoc.org.au')
-                        with a.div(style='font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:3;text-align:center;color:#888888;'):
-                            a('If you do not wish to receive our newsletters,')
-                            with a.a(href='https://status.cse.unsw.edu.au/Control_Panel/Mail/Mailing_List_Subscriptions/', style='color:#888888;', target='_blank'):
-                                a.b(_t='unsubscribe here')
-                            a('.')
+    with a.table(align='center', style=SOCIALS, cellpadding="30"):
+        with a.tr().td().table(cellpadding="10"):
+            with a.tr().td():
+                add_links(a)
+
+            with a.tr().td():
+                a('Contact:')
+                a.a(href="mailto:info@csesoc.org.au", target="_blank", _t="info@csesoc.org.au", style=f"color: {DARK_GREY}; font-weight: bold;")
+
+            with a.tr().td():
+                a("As a student of the School of Computer Science and Engineering you receive the CSESoc newsletter. If you do not wish to receive our newsletters,")
+                a.a(href='https://status.cse.unsw.edu.au/Control_Panel/Mail/Mailing_List_Subscriptions/', target='_blank', _t="unsubscribe here", style=f'color:{DARK_GREY}; font-weight: bold;')
+
+            with a.tr().td():
+                a.i(_t="Copyright © 2022 CSESoc UNSW. All rights reserved.")
 
 def add_footer(a):
     add_sponsors(a)
     add_socials(a)
+
+    # Consider adding sponsors after our socials at the very bottom in dark grey

@@ -1,5 +1,6 @@
 # Colors
 BLUE = "#1051ea"
+LIGHT_BLUE = "#3c54ec"
 DARK_GREY = "#525252"
 LIGHT_GREY = "#f0f0f0"
 CSESOC_BLUE = "#3A76F8"
@@ -11,10 +12,6 @@ UBUNTU = "Ubuntu, Helvetica, Arial, sans-serif"
 UBUNTU_MONO = "'Ubuntu Mono', monospace"
 
 # Classes
-SECTION_BACKGROUND = f"""
-    background: red;
-"""
-
 SECTION_HEADER = f"""
     font-family: {HELVETICA};
     font-weight: bold;
@@ -23,9 +20,6 @@ SECTION_HEADER = f"""
     text-align: center;
     line-height: 2;
 """
-    # width: 100%;
-    # background: red;
-    # letter-spacing: 10px;
 
 TITLE = f"""
     font-family: {HELVETICA};
@@ -64,4 +58,14 @@ BUTTON = f"""
 DIVIDER = f"""
     border-top: 1px dashed {LIGHT_GREY};
     width: 100%;
+"""
+
+SOCIALS = f"""
+    font-family: {UBUNTU};
+    font-size: 13px;
+    text-align: center;
+    color: {DARK_GREY};
+    background: {LIGHT_GREY};
+    width: 100%
+    line-height: 3;
 """
