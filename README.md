@@ -1,15 +1,15 @@
 # Quickstart
 
-1. Export  as a HTML file and place Form responses 1.html into your root directory.
-2. Run python3 main.py in root directory and it will generate soc-announce.html. This file contains scraped data, so we need to double check its in a presentable format.
+1. Export  as a HTML file and place `Form responses 1.html` into your root directory.
+2. Run `python3 main.py` in root directory and it will generate `soc-announce.html`. This file contains scraped data, so we need to double check its in a presentable format.
 3. Shorten the event descriptions to something presentable. Try not to go over double the height of the cover photo.
 4. Shorten the article descriptions, usually they are already quite short though.
-5. Ensure the titles for opportunities are actually the roles offered, and that the descriptions aren’t too long. If there is an apply link, add a Call to Action link saying “Apply now” or something similar.
-6. Open HTML file in Chrome, and select all (use CTRL + A)
+5. Ensure the titles for opportunities are actually the roles offered, and that the descriptions aren’t too long. If there is an apply link, add a **Call to Action link** saying “Apply now” or something similar.
+6. Open HTML file in Chrome, and select all (use `CTRL` + `A`)
 7. Paste into Gmail and send the email:
-  - TO: soc-announce@cse.unsw.edu.au
-  - FROM: secretary@csesoc.org.au
-  - SUBJECT: [CSESoc] Newsletter Term 1 Week 1
+  - TO: `soc-announce@cse.unsw.edu.au`
+  - FROM: `secretary@csesoc.org.au`
+  - SUBJECT: `[CSESoc] Newsletter Term 1 Week 1`
 
 # How it works
 
@@ -29,7 +29,7 @@ Some email clients strip away `<head>` when rendering the content, meaning no cu
 
 Some email client’s don’t render `<div>` properly, only tables lmao. Stick to `<table>`, `<tr>` and `<td>` if you want to edit the layout.
 
-Images must always be hosted somewhere else, and linked using its URL. Usually right clicking the image and clicking “Open image in new tab” is enough to find the URL, but you can also store it on   or similar image hosting sites.
+Images must always be hosted somewhere else, and linked using its URL. Usually right clicking the image and clicking “Open image in new tab” is enough to find the URL, but you can also store it on Imgur or similar image hosting sites.
 
 Use [https://www.htmlemailcheck.com/check/](https://www.htmlemailcheck.com/check/) to check whether your HTML tags will be rendered correctly.
 
