@@ -19,7 +19,7 @@ class SocAnnounceAirium(Airium):
         return self.tr().td(align="center", valign="top")
 
     def trtdtable(self, id, width="100%", cellpadding="0", style=""):
-        return self.trtd().table(id=id, width=width, cellpadding=cellpadding, style=style)
+        return self.trtd().table(id=id, border="0", cellspacing="0", width=width, cellpadding=cellpadding, style=style)
 
 if __name__ == "__main__":
     facebook_events = get_upcoming_events()
@@ -37,20 +37,20 @@ if __name__ == "__main__":
             a.meta(content='width=device-width, initial-scale=1', name='viewport')
             a.link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700', rel='stylesheet', type='text/css')
             a.link(href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap", rel="stylesheet", type='text/css')
-            with a.style(type='text/css'):
-                a('#outlook a {padding: 0;}.ReadMsgBody {width: 100%;}.ExternalClass {width: 100%;}.ExternalClass * {line-height: 100%;}body {margin: 0;padding: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}table,td {border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;}img {border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;}p {display: block;margin: 13px 0;}a {text-decoration:none;}')
-            with a.style(type='text/css'):
-                a('@media only screen and (max-width:480px) {@-ms-viewport {width: 320px;}@viewport {width: 320px;}}')
-            with a.style(type='text/css'):
-                a('@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);')
-            with a.style(type='text/css'):
-                a('@media only screen and (min-width:480px) {.mj-column-px-600 {width: 600px!important;max-width: 600px;}.mj-column-px-500 {width: 500px!important;max-width: 500px;}.mj-column-per-50 {width: 50%!important;max-width: 50%;}.mj-column-per-100 {width: 100%!important;max-width: 100%;}}')
-            with a.style(type='text/css'):
-                a('@media only screen and (max-width:480px) {table.full-width-mobile {width: 100%!important;}td.full-width-mobile {width: auto!important;}}')
-            with a.style(type='text/css'):
-                a('@media only screen and (max-width:480px) {.height-fix {height:80px!important;}}')
-            with a.style(type='text/css'):
-                a('@media only screen and (max-width:480px) {.height-fix-sponsor {height:185px!important;}}')
+            # with a.style(type='text/css'):
+            #     a('#outlook a {padding: 0;}.ReadMsgBody {width: 100%;}.ExternalClass {width: 100%;}.ExternalClass * {line-height: 100%;}body {margin: 0;padding: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}table,td {border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;}img {border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;}p {display: block;margin: 13px 0;}a {text-decoration:none;}')
+            # with a.style(type='text/css'):
+            #     a('@media only screen and (max-width:480px) {@-ms-viewport {width: 320px;}@viewport {width: 320px;}}')
+            # with a.style(type='text/css'):
+            #     a('@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);')
+            # with a.style(type='text/css'):
+            #     a('@media only screen and (min-width:480px) {.mj-column-px-600 {width: 600px!important;max-width: 600px;}.mj-column-px-500 {width: 500px!important;max-width: 500px;}.mj-column-per-50 {width: 50%!important;max-width: 50%;}.mj-column-per-100 {width: 100%!important;max-width: 100%;}}')
+            # with a.style(type='text/css'):
+            #     a('@media only screen and (max-width:480px) {table.full-width-mobile {width: 100%!important;}td.full-width-mobile {width: auto!important;}}')
+            # with a.style(type='text/css'):
+            #     a('@media only screen and (max-width:480px) {.height-fix {height:80px!important;}}')
+            # with a.style(type='text/css'):
+            #     a('@media only screen and (max-width:480px) {.height-fix-sponsor {height:185px!important;}}')
 
         # nesting content in at least two tables deep is best practice
         with a.body().table(id="bodyTable", width="100%"):

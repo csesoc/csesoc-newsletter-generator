@@ -19,6 +19,9 @@ SECTION_HEADER = f"""
     text-transform: uppercase;
     text-align: center;
     line-height: 2;
+    border-bottom: 5px solid {BLUE};
+    margin-block-start: 0;
+    margin-block-end: 0;
 """
 
 TITLE = f"""
@@ -56,7 +59,7 @@ BUTTON = f"""
 """
 
 DIVIDER = f"""
-    border-top: 1px dashed {LIGHT_GREY};
+    border-top: 3px dashed {LIGHT_GREY};
     width: 100%;
 """
 
