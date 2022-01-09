@@ -10,6 +10,12 @@ from newsletter.articles import add_articles
 from newsletter.opportunities import add_opportunities
 from newsletter.footer import add_footer
 
+TABLE_KWARGS = {
+    "width": "100%",
+    "cellpadding": "0",
+    "cellspacing": "0",
+}
+
 if __name__ == "__main__":
     facebook_events = get_upcoming_events()
     media_articles = get_articles()
@@ -77,52 +83,22 @@ if __name__ == "__main__":
                     style="background: white;",
                 ):
                     with a.thead():
-                        with a.tr().td().table(
-                            id="emailHeader",
-                            width="100%",
-                            cellpadding="0",
-                            cellspacing="0",
-                        ):
+                        with a.tr().td().table(id="emailHeader", **TABLE_KWARGS):
                             with a.tr().td():
                                 add_header(a)
                     with a.tbody():
-                        with a.tr().td().table(
-                            id="emailBody",
-                            width="100%",
-                            cellpadding="0",
-                            cellspacing="0",
-                        ):
-                            with a.tr().td().table(
-                                id="upcomingEvents",
-                                width="100%",
-                                cellpadding="0",
-                                cellspacing="0",
-                            ):
+                        with a.tr().td().table(id="emailBody", **TABLE_KWARGS):
+                            with a.tr().td().table(id="upcomingEvents", **TABLE_KWARGS):
                                 with a.tr().td():
                                     add_events(a, facebook_events)
-                            with a.tr().td().table(
-                                id="mediaArticles",
-                                width="100%",
-                                cellpadding="0",
-                                cellspacing="0",
-                            ):
+                            with a.tr().td().table(id="mediaArticles", **TABLE_KWARGS):
                                 with a.tr().td():
                                     add_articles(a, media_articles)
-                            with a.tr().td().table(
-                                id="opportunities",
-                                width="100%",
-                                cellpadding="0",
-                                cellspacing="0",
-                            ):
+                            with a.tr().td().table(id="opportunities", **TABLE_KWARGS):
                                 with a.tr().td():
                                     add_opportunities(a, opportunities)
                     with a.tfoot():
-                        with a.tr().td().table(
-                            id="emailFooter",
-                            width="100%",
-                            cellpadding="0",
-                            cellspacing="0",
-                        ):
+                        with a.tr().td().table(id="emailFooter", **TABLE_KWARGS):
                             with a.tr().td():
                                 add_footer(a)
 
