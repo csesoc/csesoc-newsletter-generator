@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 MEDIA_WEBSITE = "https://media.csesoc.org.au"
 
+
 class Article:
     def __init__(self, url, title, description, img):
         self.url = url
@@ -10,11 +11,6 @@ class Article:
         self.description = description
         self.img = img
 
-    def __str__(self):
-        return str(self.__class__) + ": " + str(self.__dict__)
-
-    def __repr__(self):
-        return str(self.__class__) + ": " + str(self.__dict__)
 
 def scrape_article(article):
     url = f"{MEDIA_WEBSITE}{article.find('a')['href']}"
@@ -24,12 +20,14 @@ def scrape_article(article):
 
     return Article(url, title, description, img)
 
+
 def get_articles(max=3):
     page = requests.get(MEDIA_WEBSITE)
     soup = BeautifulSoup(page.content, "html.parser")
     articles = soup.find_all("article")[:max]
 
     return [scrape_article(article) for article in articles]
+
 
 if __name__ == "__main__":
     articles = get_articles()

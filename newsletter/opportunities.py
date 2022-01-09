@@ -3,17 +3,19 @@ from newsletter.styles import BLUE, DESC, TITLE
 
 OPPORTUNITIES_HEADER_IMG = "https://i.imgur.com/twzB46W.jpeg"
 
+
 def add_opportunities_section_header(a):
-    a.div(style=f'background: url({OPPORTUNITIES_HEADER_IMG}) center center / contain no-repeat; height: 170px;')
+    a.div(
+        style=f"background: url({OPPORTUNITIES_HEADER_IMG}) center center / contain no-repeat; height: 170px;"
+    )
+
 
 def add_opportunity(a, opportunity):
-        # a.td(width="3%", style=f"border-right: 5px solid {BLUE}")
-        with a.tr().td().table(cellpadding="10", style=f"border-left: 5px solid {BLUE};"):
-            with a.tr().td().table():
-                with a.tr().td():
-                    a.h3(_t=opportunity.title, style=TITLE)
-                with a.tr().td():
-                    a.div(_t=opportunity.description, style=DESC)
+    with a.tr().td().table(cellpadding="10", style=f"border-left: 5px solid {BLUE};"):
+        with a.tr().td().table():
+            a.tr().td().h3(_t=opportunity.title, style=TITLE)
+            a.tr().td().div(_t=opportunity.description, style=DESC)
+
 
 def add_opportunities(a, opportunities):
     if not opportunities:

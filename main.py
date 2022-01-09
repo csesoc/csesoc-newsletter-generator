@@ -10,33 +10,41 @@ from newsletter.articles import add_articles
 from newsletter.opportunities import add_opportunities
 from newsletter.footer import add_footer
 
-class SocAnnounceAirium(Airium):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    # These custom functions must be first in a chain, e.g. `a.trtd().div()...` and NOT `a.div().trtd()...``
-    def trtd(self):
-        return self.tr().td(align="center", valign="top")
-
-    def trtdtable(self, id, width="100%", cellpadding="0", style=""):
-        return self.trtd().table(id=id, border="0", cellspacing="0", width=width, cellpadding=cellpadding, style=style)
-
 if __name__ == "__main__":
     facebook_events = get_upcoming_events()
     media_articles = get_articles()
     opportunities = get_opportunities()
 
-    a = SocAnnounceAirium()
-    a('<!DOCTYPE html>')
-    with a.html(xmlns='http://www.w3.org/1999/xhtml', **{'xmlns:o': 'urn:schemas-microsoft-com:office:office',
- 'xmlns:v': 'urn:schemas-microsoft-com:vml'}):
+    a = Airium()
+    a("<!DOCTYPE html>")
+    with a.html(
+        xmlns="http://www.w3.org/1999/xhtml",
+        **{
+            "xmlns:o": "urn:schemas-microsoft-com:office:office",
+            "xmlns:v": "urn:schemas-microsoft-com:vml",
+        },
+    ):
+
+        # Some email clients strip away the `<head>`, so sometimes fonts and stylesheets won't get loaded.
+        # Try to use inline styling instead of relying on styling in `<head>`
         with a.head():
             a.title(_t="soc-announce")
-            a.meta(content='IE=edge', **{'http-equiv': 'X-UA-Compatible'})
-            a.meta(content='text/html; charset=UTF-8', **{'http-equiv': 'Content-Type'})
-            a.meta(content='width=device-width, initial-scale=1', name='viewport')
-            a.link(href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700', rel='stylesheet', type='text/css')
-            a.link(href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap", rel="stylesheet", type='text/css')
+            a.meta(content="IE=edge", **{"http-equiv": "X-UA-Compatible"})
+            a.meta(content="text/html; charset=UTF-8", **{"http-equiv": "Content-Type"})
+            a.meta(content="width=device-width, initial-scale=1", name="viewport")
+
+            # Fonts
+            a.link(
+                href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700",
+                rel="stylesheet",
+                type="text/css",
+            )
+            a.link(
+                href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap",
+                rel="stylesheet",
+                type="text/css",
+            )
+
             # with a.style(type='text/css'):
             #     a('#outlook a {padding: 0;}.ReadMsgBody {width: 100%;}.ExternalClass {width: 100%;}.ExternalClass * {line-height: 100%;}body {margin: 0;padding: 0;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}table,td {border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;}img {border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;}p {display: block;margin: 13px 0;}a {text-decoration:none;}')
             # with a.style(type='text/css'):
@@ -52,28 +60,70 @@ if __name__ == "__main__":
             # with a.style(type='text/css'):
             #     a('@media only screen and (max-width:480px) {.height-fix-sponsor {height:185px!important;}}')
 
-        # nesting content in at least two tables deep is best practice
+        # Nesting content in at least two tables deep is best practice
         with a.body().table(id="bodyTable", width="100%"):
-            with a.trtdtable(id="emailContainer", width="800", cellpadding="50", style=f"background: {LIGHT_GREY};"):
-                with a.trtdtable(id="emailContent", width="700", style="background: white;"):
+            with a.tr().td(align="center").table(
+                id="emailContainer",
+                width="800",
+                cellpadding="50",
+                cellspacing="0",
+                style=f"background: {LIGHT_GREY};",
+            ):
+                with a.tr().td().table(
+                    id="emailContent",
+                    width="700",
+                    cellpadding="0",
+                    cellspacing="0",
+                    style="background: white;",
+                ):
                     with a.thead():
-                        with a.trtdtable(id="emailHeader"):
-                            with a.trtd():
+                        with a.tr().td().table(
+                            id="emailHeader",
+                            width="100%",
+                            cellpadding="0",
+                            cellspacing="0",
+                        ):
+                            with a.tr().td():
                                 add_header(a)
                     with a.tbody():
-                        with a.trtdtable(id="emailBody"):
-                            with a.trtdtable("upcomingEvents"):
-                                with a.trtd():
+                        with a.tr().td().table(
+                            id="emailBody",
+                            width="100%",
+                            cellpadding="0",
+                            cellspacing="0",
+                        ):
+                            with a.tr().td().table(
+                                id="upcomingEvents",
+                                width="100%",
+                                cellpadding="0",
+                                cellspacing="0",
+                            ):
+                                with a.tr().td():
                                     add_events(a, facebook_events)
-                            with a.trtdtable(id="mediaArticles"):
-                                with a.trtd():
+                            with a.tr().td().table(
+                                id="mediaArticles",
+                                width="100%",
+                                cellpadding="0",
+                                cellspacing="0",
+                            ):
+                                with a.tr().td():
                                     add_articles(a, media_articles)
-                            with a.trtdtable(id="opportunities"):
-                                with a.trtd():
+                            with a.tr().td().table(
+                                id="opportunities",
+                                width="100%",
+                                cellpadding="0",
+                                cellspacing="0",
+                            ):
+                                with a.tr().td():
                                     add_opportunities(a, opportunities)
                     with a.tfoot():
-                        with a.trtdtable(id="emailFooter"):
-                            with a.trtd():
+                        with a.tr().td().table(
+                            id="emailFooter",
+                            width="100%",
+                            cellpadding="0",
+                            cellspacing="0",
+                        ):
+                            with a.tr().td():
                                 add_footer(a)
 
     with open("soc-announce.html", "w") as f:
