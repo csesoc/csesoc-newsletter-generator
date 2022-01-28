@@ -22,7 +22,7 @@ SECTION_HEADER = f"""
     border-bottom: 5px solid {BLUE};
     margin-block-start: 0;
     margin-block-end: 0;
-"""
+""".replace("\n", "")
 
 TITLE = f"""
     font-family: {HELVETICA};
@@ -30,7 +30,7 @@ TITLE = f"""
     font-weight: bold;
     margin-block-start: 0;
     margin-block-end: 10px;
-"""
+""".replace("\n", "")
 
 DESC = f"""
     font-family: {UBUNTU};
@@ -38,14 +38,14 @@ DESC = f"""
     line-height: 1.4;
     min-height: 60px;
     color: {DARK_GREY};
-"""
+""".replace("\n", "")
 
 CAPTION = f"""
     font-family: {UBUNTU};
     font-size: 12px;
     text-transform: uppercase;
     color: {DARK_GREY};
-"""
+""".replace("\n", "")
 
 BUTTON = f"""
     font-family: {UBUNTU};
@@ -56,12 +56,12 @@ BUTTON = f"""
     text-align: center;
     border-radius: 3px;
     margin-top: 20px;
-"""
+""".replace("\n", "")
 
 DIVIDER = f"""
     border-top: 3px dashed {LIGHT_GREY};
     width: 100%;
-"""
+""".replace("\n", "")
 
 SOCIALS = f"""
     font-family: {UBUNTU};
@@ -69,6 +69,6 @@ SOCIALS = f"""
     text-align: center;
     color: {DARK_GREY};
     background: {LIGHT_GREY};
-    width: 100%
+    width: 100%;
     line-height: 3;
-"""
+""".replace("\n", "")

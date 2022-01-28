@@ -9,13 +9,14 @@ from scrapers.helpers import remove_attrs
 FILE_NAME = "Form responses 1.html"
 
 # Spreadsheet columns
-TIMESTAMP = 0  # A
-CONTACT_NAME = 1  # B
-CONTACT_EMAIL = 2  # C
-PAID_POSITION = 3  # D
-OPPORTUNITY_NAME = 4  # E
-DESCRIPTION = 5  # F
-BENEFITS = 6  # G
+POSTED = 0 # A
+TIMESTAMP = 1  # B
+CONTACT_NAME = 2  # C
+CONTACT_EMAIL = 3  # D
+PAID_POSITION = 4  # E
+OPPORTUNITY_NAME = 5  # F
+DESCRIPTION = 6  # G
+BENEFITS = 7  # H
 
 
 class Opportunity:

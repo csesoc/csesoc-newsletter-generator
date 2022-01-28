@@ -1,3 +1,4 @@
+import re
 from newsletter.components import add_button, add_divider, add_section_header
 from newsletter.styles import CAPTION, DESC, TITLE
 
@@ -35,7 +36,7 @@ def add_events(a, events):
             add_divider(a)
 
         for event in events:
-            with a.tr():
+            with a.tr(id=re.sub(r"\s+", '-', (re.sub(r"[^\w\s]", '', event.title)))):
                 add_event(a, event)
             with a.tr().td(colspan="2"):
                 add_divider(a)
