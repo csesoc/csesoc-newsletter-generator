@@ -1,3 +1,4 @@
+from newsletter.helpers import convert_to_id
 from newsletter.styles import BLUE, DESC, TITLE
 
 
@@ -11,7 +12,7 @@ def add_opportunities_section_header(a):
 
 
 def add_opportunity(a, opportunity):
-    with a.tr().td().table(cellpadding="10", style=f"border-left: 5px solid {BLUE};"):
+    with a.tr(id=convert_to_id(opportunity.title)).td().table(cellpadding="10", style=f"border-left: 5px solid {BLUE};"):
         with a.tr().td().table():
             a.tr().td().h3(_t=opportunity.title, style=TITLE)
             a.tr().td().div(_t=opportunity.description, style=DESC)

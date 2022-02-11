@@ -1,10 +1,10 @@
-import re
 from newsletter.components import add_button, add_divider, add_section_header
+from newsletter.helpers import convert_to_id
 from newsletter.styles import CAPTION, DESC, TITLE
 
 
 def add_event(a, event):
-    with a.td(width="45%", style="vertical-align: top").table():
+    with a.td(width="45%", style="vertical-align: top").table(style="width: 100%"):
         with a.tr().td():
             with a.a(href=event.url, target="_blank"):
                 a.img(src=event.img, width="100%", alt=f"Cover photo for {event.title}")
@@ -12,11 +12,13 @@ def add_event(a, event):
             with a.tr():
                 a.td(_t="📆")
                 a.td(_t=event.time)
-            with a.tr():
-                a.td(_t="📍")
-                a.td(_t=event.location)
 
-    with a.td(width="55%", style="vertical-align: top").table():
+            if event.location:
+                with a.tr():
+                    a.td(_t="📍")
+                    a.td(_t=event.location)
+
+    with a.td(width="55%", style="vertical-align: top").table(style="width: 100%"):
         with a.tr().td():
             a.h3(_t=event.title, style=TITLE)
         with a.tr().td():
@@ -36,7 +38,7 @@ def add_events(a, events):
             add_divider(a)
 
         for event in events:
-            with a.tr(id=re.sub(r"\s+", '-', (re.sub(r"[^\w\s]", '', event.title)))):
+            with a.tr(id=convert_to_id(event.title)):
                 add_event(a, event)
             with a.tr().td(colspan="2"):
                 add_divider(a)

@@ -1,9 +1,10 @@
 from newsletter.components import add_button, add_divider, add_section_header
+from newsletter.helpers import convert_to_id
 from newsletter.styles import DESC, TITLE
 
 
 def add_article(a, article):
-    with a.td(width="45%", style="vertical-align: top").table():
+    with a.td(width="45%", style="vertical-align: top").table(style="width: 100%"):
         with a.tr().td():
             with a.a(href=article.url, target="_blank"):
                 a.img(
@@ -12,7 +13,7 @@ def add_article(a, article):
                     alt=f"Cover photo for {article.title}",
                 )
 
-    with a.td(width="55%", style="vertical-align: top").table():
+    with a.td(width="55%", style="vertical-align: top").table(style="width: 100%"):
         with a.tr().td():
             a.h3(_t=article.title, style=TITLE)
         with a.tr().td():
@@ -32,7 +33,7 @@ def add_articles(a, articles):
             add_divider(a)
 
         for article in articles:
-            with a.tr():
+            with a.tr(id=convert_to_id(article.title)):
                 add_article(a, article)
             with a.tr().td(colspan="2"):
                 add_divider(a)
