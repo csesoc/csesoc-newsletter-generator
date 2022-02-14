@@ -79,16 +79,13 @@ def get_upcoming_events(path="/csesoc/events"):
     # Assuming all event links should be for upcoming events
     upcoming_events_links = soup.select("a[href*=\/events\/]")
     upcoming_events = [scrape_event_page(a["href"].split("?")[0]) for a in upcoming_events_links]
-    upcoming_events.reverse()
 
     # Events may be paginated if there are more than 5 upcoming events
     see_more_button = soup.find(id="m_more_friends_who_like_this")
     if see_more_button:
         more_events = get_upcoming_events(see_more_button.find('a')['href'])
-        more_events.extend(upcoming_events)
-        return more_events
+        upcoming_events.extend(more_events)
 
-    # Put latest events at the top
     return upcoming_events
 
 
