@@ -1,5 +1,6 @@
 from newsletter.helpers import convert_to_id
 from newsletter.styles import BLUE, DESC, TITLE
+from newsletter.components import add_divider, add_section_header
 
 
 OPPORTUNITIES_HEADER_IMG = "https://i.imgur.com/twzB46W.jpeg"
@@ -24,7 +25,10 @@ def add_opportunities(a, opportunities):
 
     with a.table(cellspacing="0", cellpadding="0"):
         with a.tr().th(colspan="2", style="text-align: center;"):
-            add_opportunities_section_header(a)
+            # add_opportunities_section_header(a)
+            add_section_header(a, "Opportunities")
+        with a.tr().td(colspan="2"):
+            add_divider(a)
 
         with a.tr().td().table(cellpadding="20"):
             for opportunity in opportunities:

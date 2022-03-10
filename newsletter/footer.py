@@ -1,7 +1,8 @@
 from newsletter.styles import DARK_GREY, SOCIALS
+from newsletter.components import add_section_header
 
 
-SPONSORS_IMAGE = "https://i.imgur.com/XvCLqIg.png"
+SPONSORS_IMAGE = "https://i.imgur.com/0RaFLko.png"
 
 LINKS = {
     "Facebook Page": "https://www.facebook.com/csesoc",
@@ -25,9 +26,12 @@ def add_links(a):
 
 
 def add_sponsors(a):
-    a.div(
-        style=f"background: url({SPONSORS_IMAGE}) bottom center / contain no-repeat; height: 370px;"
-    )
+    with a.tr().th(colspan="2", style="text-align: center;"):
+        add_section_header(a, "Sponsors")
+    with a.tr().td(colspan="2"):
+        a.div(
+            style=f"background: url({SPONSORS_IMAGE}) bottom center / contain no-repeat; height: 850px;"
+        )
 
 
 def add_socials(a):
@@ -63,5 +67,3 @@ def add_socials(a):
 def add_footer(a):
     add_sponsors(a)
     add_socials(a)
-
-    # Consider adding sponsors after our socials at the very bottom in dark grey
