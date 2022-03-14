@@ -25,7 +25,7 @@ class Opportunity:
         self.description = description
 
 
-def get_opportunities(max=3):
+def get_opportunities(max=6):
     if FILE_NAME not in os.listdir("."):
         return []
 
