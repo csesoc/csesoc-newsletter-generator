@@ -2,12 +2,14 @@
 ## Quickstart
 
 1. Export CSESoc Opportunities Sheet as a HTML file and place `Form responses 1.html` into your root directory.
-2. Run `python3 main.py` in root directory and it will generate `soc-announce.html`. This file contains scraped data, so we need to double check its in a presentable format.
-3. Shorten the event descriptions to something presentable. Try not to go over double the height of the cover photo.
-4. Shorten the article descriptions, usually they are already quite short though.
-5. Ensure the titles for opportunities are actually the roles offered, and that the descriptions aren’t too long. If there is an apply link, add a **Call to Action link** saying “Apply now” or something similar.
-6. Open HTML file in Chrome, and select all (use `CTRL` + `A`)
-7. Paste into Gmail and send the email:
+2. Open up each upcoming Facebook event from [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events) and replace `www` with `mbasic`. For example, `https://www.facebook.com/events/4865179903585585` becomes `https://mbasic.facebook.com/events/4865179903585585`. Save this page locally to `/scrapers/cached_pages/`.
+3. Run `python3 main.py` in root directory and it will generate `soc-announce.html`. This file contains scraped data, so we need to double check its in a presentable format.
+4. The generated cover photos will link to your local path. Go to the Facebook event page online and open up the cover photo in a new tab and directly link the `src` to this link.
+5. Shorten the event descriptions to something presentable. Try not to go over double the height of the cover photo.
+6. Shorten the article descriptions, usually they are already quite short though.
+7. Ensure the titles for opportunities are actually the roles offered, and that the descriptions aren’t too long. If there is an apply link, add a **Call to Action link** saying “Apply now” or something similar.
+8. Open HTML file in Chrome, and select all (use `CTRL` + `A`)
+9. Paste into Gmail and send the email:
   - TO: `soc-announce@cse.unsw.edu.au`
   - FROM: `secretary@csesoc.org.au`
   - SUBJECT: `[CSESoc] Newsletter Term 1 Week 1`
@@ -21,6 +23,12 @@ Media articles are scraped from the Media Website. All the latest articles along
 Opportunities can’t be scraped easily, because the data exists on a Google Sheets and the effort to verify your account access is such a cbbs. Instead, we export the sheet in a HTML format and scrape the information from the local HTML file. We use HTML instead of CSV because it preserves new lines and paragraphs.
 
 Now that we have all our data, the script writes it up nicely into a HTML file. However, the scraped descriptions are always usually too long, so that’s why we need to make some manual changes once the HTML file has been made.
+
+### Breaking changes from Facebook
+
+This used to be quite automated. However, since around the start of Term 3 of 2022, users that are not logged in cannot see a page's upcoming events, regardless whether the event or page is public. This is why we must now provide the script a list of event IDs manually to the script.
+
+The script can still request event details from any event page - it is only the page showing all upcoming events that is now disabled.
 
 ## Email HTML
 

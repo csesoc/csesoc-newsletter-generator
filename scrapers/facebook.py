@@ -1,4 +1,4 @@
-import requests
+import os
 import re
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -44,11 +44,14 @@ def format_event_time(event_time):
     return event_time
 
 
-def scrape_event_page(path):
-    page = requests.get(f"https://mbasic.facebook.com{path}", headers=HEADERS)
-    soup = BeautifulSoup(page.content, "html.parser")
+def get_event_id(contents):
+    url = re.search("<!-- saved from url=.*-->", contents)
+    return url.group().split('/')[-2]
 
-    url = f"https://www.facebook.com{path}"
+
+def scrape_event_page(contents):
+    soup = BeautifulSoup(contents, "html.parser")
+    url = f"https://www.facebook.com/events/{get_event_id(contents)}"
 
     title = soup.find("header").find("h1").get_text()
     print(title)
@@ -72,19 +75,18 @@ def scrape_event_page(path):
     return Event(url, title, description, time, location, img)
 
 
-def get_upcoming_events(path="/csesoc/events"):
-    page = requests.get(f"{MBASIC_FACEBOOK}{path}", headers=HEADERS)
-    soup = BeautifulSoup(page.content, "html.parser")
+def get_upcoming_events():
+    directory = os.path.dirname(os.path.abspath(__file__))
+    cached_pages = os.path.join(directory, 'cached_pages')
+    upcoming_events = []
 
-    # Assuming all event links should be for upcoming events
-    upcoming_events_links = soup.select("a[href*=\/events\/]")
-    upcoming_events = [scrape_event_page(a["href"].split("?")[0]) for a in upcoming_events_links]
+    for filename in os.listdir(cached_pages):
+        if filename.endswith('.html'):
+            filename = os.path.join(cached_pages,filename)
 
-    # Events may be paginated if there are more than 5 upcoming events
-    see_more_button = soup.find(id="m_more_friends_who_like_this")
-    if see_more_button:
-        more_events = get_upcoming_events(see_more_button.find('a')['href'])
-        upcoming_events.extend(more_events)
+            with open(filename, 'r') as f:
+                event_page = scrape_event_page(f.read())
+                upcoming_events.append(event_page)
 
     return upcoming_events
 

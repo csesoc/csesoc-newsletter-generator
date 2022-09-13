@@ -1,6 +1,8 @@
 .vscode/
 Form\ responses\ 1.html
 *.csv
+scrapers/cached_pages/*
+!scrapers/cached_pages/*.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
