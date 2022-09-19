@@ -1,4 +1,5 @@
 import os
+import requests
 import re
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -44,14 +45,11 @@ def format_event_time(event_time):
     return event_time
 
 
-def get_event_id(contents):
-    url = re.search("<!-- saved from url=.*-->", contents)
-    return url.group().split('/')[-2]
+def scrape_event_page(event_id):
+    page = requests.get(f"{MBASIC_FACEBOOK}/events/{event_id}", headers=HEADERS)
+    soup = BeautifulSoup(page.content, "html.parser")
 
-
-def scrape_event_page(contents):
-    soup = BeautifulSoup(contents, "html.parser")
-    url = f"https://www.facebook.com/events/{get_event_id(contents)}"
+    url = f"https://www.facebook.com/events/{event_id}"
 
     title = soup.find("header").find("h1").get_text()
     print(title)
@@ -75,20 +73,27 @@ def scrape_event_page(contents):
     return Event(url, title, description, time, location, img)
 
 
+def scrape_events(contents):
+    soup = BeautifulSoup(contents, "html.parser")
+
+    events = soup.find("div", class_="p8bdhjjv").find("div", class_="alzwoclg jl2a5g8c o7bt71qk sl27f92c")
+    links = events.find_all("a")
+    hrefs = list(set([l["href"] for l in links if l["href"] != "https://www.facebook.com/csesoc"]))
+    event_ids = [href.split('/')[-2] for href in hrefs]
+
+    return [scrape_event_page(event_id) for event_id in event_ids]
+
+
 def get_upcoming_events():
     directory = os.path.dirname(os.path.abspath(__file__))
     cached_pages = os.path.join(directory, 'cached_pages')
-    upcoming_events = []
 
     for filename in os.listdir(cached_pages):
         if filename.endswith('.html'):
             filename = os.path.join(cached_pages,filename)
 
             with open(filename, 'r') as f:
-                event_page = scrape_event_page(f.read())
-                upcoming_events.append(event_page)
-
-    return upcoming_events
+                return scrape_events(f.read())
 
 
 if __name__ == "__main__":
