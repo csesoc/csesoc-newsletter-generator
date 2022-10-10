@@ -16,7 +16,13 @@
 
 ## How it works
 
-Upcoming events are scraped from CSESoc UNSW’s Facebook Page. We scrape from the mobile version of the page because it doesn’t rely on JavaScript to dynamically load the page, making it easier to scrape. For each upcoming event we retrieve the title, description, time, location and cover photo.
+Upcoming events are scraped from CSESoc UNSW’s Facebook Page. We scrape from the mobile version of the page because it doesn’t rely on JavaScript to dynamically load the page, making it easier to scrape. For each upcoming event we retrieve the **title, description, time, location** and **cover photo**.
+
+![image](https://user-images.githubusercontent.com/29576450/191177598-5eb3b088-73b5-4e74-9e91-9a9acda28948.png)
+*This is what BeautifulSoup4 sees when you scrape the mobile events page*
+
+![image](https://user-images.githubusercontent.com/29576450/191177745-78e8de34-e033-4d73-853a-58a24a59995a.png)
+*This is what BeautifulSoup4 sees when you scrape the event page*
 
 Media articles are scraped from the Media Website. All the latest articles along with their descriptions are on the home page, making it very easy.
 
