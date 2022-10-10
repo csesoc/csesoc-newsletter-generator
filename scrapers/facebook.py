@@ -76,7 +76,7 @@ def scrape_event_page(event_id):
 def scrape_events(contents):
     soup = BeautifulSoup(contents, "html.parser")
 
-    events = soup.find("div", class_="p8bdhjjv").find("div", class_="alzwoclg jl2a5g8c o7bt71qk sl27f92c")
+    events = soup.find("div", class_="x1yztbdb").find("div", class_="x78zum5 x1q0g3np x1a02dak x1qughib")
     links = events.find_all("a")
     hrefs = list(set([l["href"] for l in links if l["href"] != "https://www.facebook.com/csesoc"]))
     event_ids = [href.split('/')[-2] for href in hrefs]
