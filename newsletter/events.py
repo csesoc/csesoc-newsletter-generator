@@ -38,6 +38,8 @@ def add_events(a, events):
             add_divider(a)
 
         for event in events:
+            if not event:
+                continue
             with a.tr(id=convert_to_id(event.title)):
                 add_event(a, event)
             with a.tr().td(colspan="2"):

@@ -51,6 +51,9 @@ def scrape_event_page(event_id):
 
     url = f"https://www.facebook.com/events/{event_id}"
 
+    if soup.find("header") is None:
+        return None
+    
     title = soup.find("header").find("h1").get_text()
     print(title)
 
