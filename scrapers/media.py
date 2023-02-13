@@ -15,7 +15,7 @@ class Article:
 def scrape_article(article):
     url = f"{MEDIA_WEBSITE}{article.find('a')['href']}"
     title = article.find("h2").get_text()
-    description = article.find("p").get_text()
+    description = article.find("div").get_text()
     img = f"{MEDIA_WEBSITE}{article.find('img')['src']}"
 
     return Article(url, title, description, img)
