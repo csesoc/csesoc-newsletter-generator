@@ -1,9 +1,12 @@
 import os
 import requests
 import re
+import time
+import mechanicalsoup
 from datetime import datetime
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
+from dotenv import load_dotenv
 
 from scrapers.helpers import remove_attrs
 
@@ -20,6 +23,26 @@ class Event:
         self.time = time
         self.location = location
         self.img = img
+
+
+def login(event_id):
+
+    load_dotenv()
+
+    username = os.getenv("USERNAME")
+    password = os.getenv("PASSWORD")
+
+    browser = mechanicalsoup.StatefulBrowser()
+    browser.set_user_agent(HEADERS["User-Agent"])
+    browser.open(f"{MBASIC_FACEBOOK}/events/{event_id}")
+
+    login_form = browser.select_form('form')
+    login_form.set("email", username)
+    login_form.set("pass", password)
+
+    browser.submit_selected()
+
+    return browser
 
 
 def replace_referral_link(a):
@@ -46,16 +69,27 @@ def format_event_time(event_time):
 
 
 def scrape_event_page(event_id):
-    page = requests.get(f"{MBASIC_FACEBOOK}/events/{event_id}", headers=HEADERS)
-    soup = BeautifulSoup(page.content, "html.parser")
+    # page = requests.get(f"{MBASIC_FACEBOOK}/events/{event_id}", headers=HEADERS)
+
+    # page = f"{MBASIC_FACEBOOK}/events/{event_id}"
+    browser = login(event_id)
+    
+    page = browser.get_current_page()
+
+    # convert page to string
+    page = str(page)
+
+    if page is None:
+        return None
+
+    soup = BeautifulSoup(page,"html.parser")
 
     url = f"https://www.facebook.com/events/{event_id}"
 
     if soup.find("header") is None:
         return None
     
-    title = soup.find("header").find("h1").get_text()
-    print(title)
+    title = soup.find("title").get_text()
 
     description = soup.find(id="event_tabs").find("section")
     remove_attrs(description)
@@ -71,7 +105,10 @@ def scrape_event_page(event_id):
     except:
         location = None
 
+
     img = soup.find(id="event_header").find("img")["src"]
+
+    print(title)
 
     return Event(url, title, description, time, location, img)
 
