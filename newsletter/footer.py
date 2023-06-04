@@ -2,7 +2,7 @@ from newsletter.styles import DARK_GREY, SOCIALS
 from newsletter.components import add_section_header
 
 
-SPONSORS_IMAGE = "https://i.imgur.com/PXGnhQg.png"
+SPONSORS_IMAGE = "https://i.imgur.com/u5p6fdL.png"
 
 LINKS = {
     "Facebook Page": "https://www.facebook.com/csesoc",
@@ -61,7 +61,7 @@ def add_socials(a):
                 )
 
             with a.tr().td():
-                a.i(_t="Copyright © 2022 CSESoc UNSW. All rights reserved.")
+                a.i(_t="Copyright © 2023 CSESoc UNSW. All rights reserved.")
 
 
 def add_footer(a):
