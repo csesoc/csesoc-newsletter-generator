@@ -37,12 +37,15 @@ def get_opportunities(max=6):
         opportunities = []
         for row in rows:
             columns = row.find_all("td")
+            if len(columns) < 8:
+                continue
             title = columns[OPPORTUNITY_NAME].get_text()
             description = columns[DESCRIPTION]
             remove_attrs(description)
             description.name = "div"
 
-            opportunities.append(Opportunity(title, description))
+            if title != "Opportunity Name " and title != "":
+                opportunities.append(Opportunity(title, description))
 
         return opportunities
 
