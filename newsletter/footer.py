@@ -2,7 +2,7 @@ from newsletter.styles import DARK_GREY, SOCIALS
 from newsletter.components import add_section_header
 
 
-SPONSORS_IMAGE = "https://i.imgur.com/u5p6fdL.png"
+SPONSORS_IMAGE = "https://i.imgur.com/J2tRMZO.png"
 
 LINKS = {
     "Facebook Page": "https://www.facebook.com/csesoc",
