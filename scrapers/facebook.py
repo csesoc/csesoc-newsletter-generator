@@ -8,11 +8,12 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 from dotenv import load_dotenv
 
-from scrapers.helpers import remove_attrs
+
+from scrapers.helpers import remove_attrs, HEADERS
 
 # Mobile Facebook pages don't use JavaScript, making it easier to scrape
 MBASIC_FACEBOOK = "https://mbasic.facebook.com"
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0'}
+
 
 
 class Event:
@@ -25,24 +26,32 @@ class Event:
         self.img = img
 
 
-def login(event_id):
+def login(url):
 
+    # load environment variables
     load_dotenv()
 
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
 
     browser = mechanicalsoup.StatefulBrowser()
-    browser.set_user_agent(HEADERS["User-Agent"])
-    browser.open(f"{MBASIC_FACEBOOK}/events/{event_id}")
 
+    # check if string begins with https://mbasic.facebook.com
+    if re.match(r"^https:\/\/mbasic\.facebook\.com", url) is not None:
+        browser.set_user_agent(HEADERS["fireFox"])
+    else:
+        browser.set_user_agent(HEADERS["iPad"])
+   
+    # login
+    browser.open(url)
     login_form = browser.select_form('form')
     login_form.set("email", username)
     login_form.set("pass", password)
 
+
     browser.submit_selected()
 
-    return browser
+    return str(browser.get_current_page())
 
 
 def replace_referral_link(a):
@@ -69,12 +78,8 @@ def format_event_time(event_time):
 
 
 def scrape_event_page(event_id):
-    # page = requests.get(f"{MBASIC_FACEBOOK}/events/{event_id}", headers=HEADERS)
 
-    # page = f"{MBASIC_FACEBOOK}/events/{event_id}"
-    browser = login(event_id)
-    
-    page = browser.get_current_page()
+    page = login(f"{MBASIC_FACEBOOK}/events/{event_id}")
 
     # convert page to string
     page = str(page)
@@ -116,24 +121,24 @@ def scrape_event_page(event_id):
 def scrape_events(contents):
     soup = BeautifulSoup(contents, "html.parser")
 
-    events = soup.find("div", class_="x1yztbdb").find("div", class_="x78zum5 x1q0g3np x1a02dak x1qughib")
-    links = events.find_all("a")
+    events = soup.find("div", class_="_51lk").find_all("div", class_="item _1zq- tall acw")
+    links = [event.find("a") for event in events]
     hrefs = list(set([l["href"] for l in links if l["href"] != "https://www.facebook.com/csesoc"]))
-    event_ids = [href.split('/')[-2] for href in hrefs]
+    event_ids = [href.split('/')[-1] for href in hrefs]
+
+    # remove ?id= from event_ids
+    event_ids = [event_id.split('?id=')[-1] for event_id in event_ids]
 
     return [scrape_event_page(event_id) for event_id in event_ids]
 
 
 def get_upcoming_events():
-    directory = os.path.dirname(os.path.abspath(__file__))
-    cached_pages = os.path.join(directory, 'cached_pages')
+    # Link to CSESoc events page on ipad
+    url = "https://m.facebook.com/timeline/app_collection/?collection_token=100056988625965%3A2344061033%3A211&paipv=0&eav=AfZ3iHdiQBe4J8DQVdA1R_Cw2ZMZB-30B-mie9hIRyUkZ5YVb14n6N8lzCrQT1JBc7k"
+    page = login(url)
+    return scrape_events(page)
+ 
 
-    for filename in os.listdir(cached_pages):
-        if filename.endswith('.html'):
-            filename = os.path.join(cached_pages,filename)
-
-            with open(filename, 'r') as f:
-                return scrape_events(f.read())
 
 
 if __name__ == "__main__":
