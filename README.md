@@ -18,11 +18,11 @@
 
 Upcoming events are scraped from CSESoc UNSW’s Facebook Page. We scrape from the mobile version of the page because it doesn’t rely on JavaScript to dynamically load the page, making it easier to scrape. For each upcoming event we retrieve the **title, description, time, location** and **cover photo**.
 
-![image](https://user-images.githubusercontent.com/29576450/191177598-5eb3b088-73b5-4e74-9e91-9a9acda28948.png)
-*This is what BeautifulSoup4 sees when you scrape the mobile events page*
+![image](https://github.com/csesoc/csesoc-newsletter-generator/assets/79000337/9db415c6-a1ff-4727-8fac-232d8e04cc61)
+          
+*This is what BeautifulSoup4 sees when you scrape the iPad event page*
 
-![image](https://user-images.githubusercontent.com/29576450/191177745-78e8de34-e033-4d73-853a-58a24a59995a.png)
-*This is what BeautifulSoup4 sees when you scrape the event page*
+Since around the start Term 2 2023, Facebook requires all users to be signed in to view the upcoming events for Facebook pages. A .env file containing USERNAME and PASSWORD for an active FB account is required for the scraper to be able to log in to facebook.
 
 Media articles are scraped from the Media Website. All the latest articles along with their descriptions are on the home page, making it very easy.
 
@@ -30,9 +30,11 @@ Opportunities can’t be scraped easily, because the data exists on a Google She
 
 Now that we have all our data, the script writes it up nicely into a HTML file. However, the scraped descriptions are always usually too long, so that’s why we need to make some manual changes once the HTML file has been made.
 
-### Breaking changes from Facebook
 
-This used to be quite automated. However, since around the start of Term 3 of 2022, users that are not logged in cannot see a page's upcoming events, regardless whether the event or page is public. This is why we must now provide the script a saved local copy of [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events).
+
+### Breaking changes from Facebook
+(Fixed as of Term 2 2023)
+~~This used to be quite automated. However, since around the start of Term 3 of 2022, users that are not logged in cannot see a page's upcoming events, regardless whether the event or page is public. This is why we must now provide the script a saved local copy of [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events).~~ 
 
 The script can still request event details from any event page - it is only the page showing all upcoming events that is now disabled.
 
