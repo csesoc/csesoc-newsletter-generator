@@ -36,7 +36,7 @@ Now that we have all our data, the script writes it up nicely into a HTML file. 
 (Fixed as of Term 2 2023)
 ~~This used to be quite automated. However, since around the start of Term 3 of 2022, users that are not logged in cannot see a page's upcoming events, regardless whether the event or page is public. This is why we must now provide the script a saved local copy of [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events).~~ 
 
-The script can still request event details from any event page - it is only the page showing all upcoming events that is now disabled.
+~~The script can still request event details from any event page - it is only the page showing all upcoming events that is now disabled.~~
 
 ## Email HTML
 
