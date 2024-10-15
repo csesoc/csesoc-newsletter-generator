@@ -11,7 +11,7 @@ LINKS = {
     "TikTok": "https://www.tiktok.com/@csesoc",
     "LinkedIn": "https://www.linkedin.com/company/csesoc",
     "YouTube": "https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg/",
-    "Discord": "https://cseso.cc/discord",
+    "Discord": "https://bit.ly/CSESocDiscord",
 }
 
 
