@@ -8,12 +8,12 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 from dotenv import load_dotenv
 
-
-from scrapers.helpers import remove_attrs, HEADERS
+from scrapers.helpers import remove_attrs, input_sanitise, HEADERS
 
 # Mobile Facebook pages don't use JavaScript, making it easier to scrape
 MBASIC_FACEBOOK = "https://mbasic.facebook.com"
 
+# EVENTS_DIR = "events"
 
 
 class Event:
@@ -118,6 +118,51 @@ def scrape_event_page(event_id):
     return Event(url, title, description, time, location, img)
 
 
+# def man_scrape_event_page(event):
+#     # browser = mechanicalsoup.StatefulBrowser()
+#     # browser.open(event)
+#     # page = str(browser.get_current_page())
+
+#     # if page is None:
+#     #     return None
+
+#     page = event.read()  # Read the entire content of the file as a single string
+
+#     # print(type(page))
+
+#     soup = BeautifulSoup(page,"html.parser")
+#     # print(type(soup))
+
+#     # url is in the line <!-- saved from url=(0062)https://www.facebook.com/events/{event_id} -->
+#     url = re.search(r"https://www.facebook.com/events/\d+", page).group(0)
+
+#     if soup.find("header") is None:
+#         return None
+
+#     title = soup.find("title").get_text()
+
+#     description = soup.find(id="event_tabs").find("section")
+#     remove_attrs(description)
+#     for a in description.find_all("a"):
+#         replace_referral_link(a)
+
+#     summary = soup.find(id="event_summary").find_all("table")
+#     time = format_event_time(summary[0].find("div").text)
+
+#     # location is sometimes optional
+#     try:
+#         location = summary[1].find("div").text
+#     except:
+#         location = None
+
+
+#     img = soup.find(id="event_header").find("img")["src"]
+
+#     print(title)
+
+#     return Event(url, title, description, time, location, img)
+
+
 def scrape_events(contents):
     soup = BeautifulSoup(contents, "html.parser")
 
@@ -137,8 +182,40 @@ def get_upcoming_events():
     url = "https://m.facebook.com/timeline/app_collection/?collection_token=100056988625965%3A2344061033%3A211&paipv=0&eav=AfZ3iHdiQBe4J8DQVdA1R_Cw2ZMZB-30B-mie9hIRyUkZ5YVb14n6N8lzCrQT1JBc7k"
     page = login(url)
     return scrape_events(page)
- 
 
+
+# def man_get_upcoming_events():
+#     # Read saved event pages in events directory
+#     events = []
+#     for filename in os.listdir(EVENTS_DIR):
+#         # Open the file and read its contents if it is a normal file
+#         if not os.path.isfile(f"{EVENTS_DIR}/{filename}"):
+#             continue
+
+#         with open(f"{EVENTS_DIR}/{filename}", "r") as f:
+#             events.append(man_scrape_event_page(f))
+
+#     return events
+
+
+def man_get_upcoming_events():
+    events = []
+
+    line = input_sanitise("Add new event? [y/n]: ", {"y", "n"})
+
+    while line == "y":
+        url = input_sanitise("Enter event URL: ")
+        title = input_sanitise("Enter event title: ")
+        description = input_sanitise("Enter event description: ")
+        time = input_sanitise("Enter event time: ")
+        location = input_sanitise("Enter event location: ")
+        img = input_sanitise("Enter event image URL: ")
+
+        events.append(Event(url, title, description, time, location, img))
+
+        line = input_sanitise("Add new event? [y/n]: ", {"y", "n"})
+
+    return events
 
 
 if __name__ == "__main__":

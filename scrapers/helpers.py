@@ -7,5 +7,18 @@ def remove_attrs(soup, whitelist=["href", "target"]):
             del tag[attr]
 
 
+def input_sanitise(msg, valid_options=None):
+    line = input(msg).strip()
+
+    if valid_options is None:
+        return line
+
+    while line not in valid_options:
+        print("Invalid input. Valid options: ", valid_options)
+        line = input(msg).strip()
+
+    return line
+
+
 HEADERS = {'fireFox': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0',
            'iPad': 'Mozilla/5.0 (iPad; CPU OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBDV/iPad7,5;FBMD/iPad;FBSN/iOS;FBSV/14.4.2;FBSS/2;FBID/tablet;FBLC/;FBOP/5]'}

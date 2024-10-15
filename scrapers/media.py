@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+from scrapers.helpers import input_sanitise
+
 MEDIA_WEBSITE = "https://media.csesoc.org.au"
 
 
@@ -29,6 +31,24 @@ def get_articles(max=3):
     articles = soup.find_all("article")[:max]
 
     return [scrape_article(article) for article in articles]
+
+
+def man_get_articles():
+    medias = []
+
+    line = input_sanitise("Add new media? [y/n]: ", {"y", "n"})
+
+    while line == "y":
+        url = input_sanitise("Enter media URL: ")
+        title = input_sanitise("Enter media title: ")
+        description = input_sanitise("Enter media description: ")
+        img = input_sanitise("Enter media image URL: ")
+
+        medias.append(Article(url, title, description, img))
+
+        line = input_sanitise("Add new media? [y/n]: ", {"y", "n"})
+
+    return medias
 
 
 if __name__ == "__main__":

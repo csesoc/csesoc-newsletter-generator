@@ -4,7 +4,7 @@
 import os
 from bs4 import BeautifulSoup
 
-from scrapers.helpers import remove_attrs
+from scrapers.helpers import remove_attrs, input_sanitise
 
 FILE_NAME = "Form responses 1.html"
 
@@ -48,6 +48,22 @@ def get_opportunities(max=6):
                 opportunities.append(Opportunity(title, description))
 
         return opportunities
+
+
+def man_get_opportunities():
+    opportunities = []
+
+    line = input_sanitise("Add new opportunity? [y/n]: ", {"y", "n"})
+
+    while line == "y":
+        title = input_sanitise("Enter opportunity title: ")
+        description = input_sanitise("Enter opportunity description: ")
+
+        opportunities.append(Opportunity(title, description))
+
+        line = input_sanitise("Add new opportunity? [y/n]: ", {"y", "n"})
+
+    return opportunities
 
 
 if __name__ == "__main__":

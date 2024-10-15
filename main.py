@@ -1,7 +1,8 @@
+import sys
 from airium import Airium
-from scrapers.facebook import get_upcoming_events
-from scrapers.media import get_articles
-from scrapers.opportunities import get_opportunities
+from scrapers.facebook import get_upcoming_events, man_get_upcoming_events
+from scrapers.media import get_articles, man_get_articles
+from scrapers.opportunities import get_opportunities, man_get_opportunities
 
 from newsletter.styles import LIGHT_GREY
 from newsletter.header import add_header
@@ -16,10 +17,24 @@ TABLE_KWARGS = {
     "cellspacing": "0",
 }
 
+CMD_OPTIONS = {'-m', '-a'}
+
+VALID_CMD_LEN = {1, 2}
+
 if __name__ == "__main__":
-    facebook_events = get_upcoming_events()
-    media_articles = get_articles()
-    opportunities = get_opportunities()
+    if len(sys.argv) not in VALID_CMD_LEN or sys.argv[1] not in CMD_OPTIONS:
+        print("Usage: python3 main.py [-m | -a]")
+        sys.exit(1)
+
+    if sys.argv[1] == '-m':
+        facebook_events = man_get_upcoming_events()
+        media_articles = man_get_articles()
+        opportunities = man_get_opportunities()
+    elif sys.argv[1] == '-a' or len(sys.argv) == 1:
+        # Default to -a
+        facebook_events = get_upcoming_events()
+        media_articles = get_articles()
+        opportunities = get_opportunities()
 
     a = Airium()
     a("<!DOCTYPE html>")
