@@ -231,7 +231,7 @@ class NewsletterGeneratorGUI(QMainWindow):
                 event = Event(
                     url=form["url"].text(),
                     title=form["title"].text(),
-                    description=form["desc"].toPlainText(),
+                    description=form["desc"].toPlainText().replace("\n", "<br />"),
                     time=form["time"].text(),
                     location=form["location"].text(),
                     img=form["img"].text()
@@ -243,7 +243,7 @@ class NewsletterGeneratorGUI(QMainWindow):
                 article = Article(
                     url=form["url"].text(),
                     title=form["title"].text(),
-                    description=form["desc"].toPlainText(),
+                    description=form["desc"].toPlainText().replace("\n", "<br />"),
                     img=form["img"].text()
                 )
                 articles.append(article)
@@ -252,7 +252,7 @@ class NewsletterGeneratorGUI(QMainWindow):
             for form in self.opportunity_forms:
                 opportunity = Opportunity(
                     title=form["title"].text(),
-                    description=form["desc"].toPlainText()
+                    description=form["desc"].toPlainText().replace("\n", "<br />")
                 )
                 opportunities.append(opportunity)
 
