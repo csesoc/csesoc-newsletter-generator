@@ -13,10 +13,10 @@ class NewsletterGeneratorGUI(QMainWindow):
         self.setWindowTitle("CSESoc Newsletter Generator")
         self.setMinimumSize(800, 600)
         
-        # Store data
-        self.events = []
-        self.articles = []
-        self.opportunities = []
+        # Store forms instead of data
+        self.event_forms = []
+        self.article_forms = []
+        self.opportunity_forms = []
         
         # Main container
         main_widget = QWidget()
@@ -139,43 +139,28 @@ class NewsletterGeneratorGUI(QMainWindow):
         form_layout.addRow("Image URL:", img_input)
         form_layout.addRow("Description:", desc_input)
         
-        # Create buttons
-        buttons_layout = QHBoxLayout()
+        # Store form inputs reference for later collection
+        form_data = {
+            "url": url_input,
+            "title": title_input,
+            "time": time_input,
+            "location": location_input,
+            "img": img_input,
+            "desc": desc_input,
+            "form": event_form
+        }
+        self.event_forms.append(form_data)
         
-        event_ref = {"form": event_form}  # Reference to form for the closure
-        
-        def save_event():
-            event = Event(
-                url=url_input.text(),
-                title=title_input.text(),
-                description=desc_input.toPlainText(),
-                time=time_input.text(),
-                location=location_input.text(),
-                img=img_input.text()
-            )
-            self.events.append(event)
-        
-        def delete_form():
-            self.events_container.removeWidget(event_ref["form"])
-            event_ref["form"].deleteLater()
-        
-        save_button = QPushButton("Save Event")
-        save_button.clicked.connect(save_event)
-        
+        # Delete button only
         delete_button = QPushButton("Delete")
-        delete_button.clicked.connect(delete_form)
-        
-        buttons_layout.addWidget(save_button)
-        buttons_layout.addWidget(delete_button)
-        
-        form_layout.addRow(buttons_layout)
+        delete_button.clicked.connect(lambda: self.delete_event_form(form_data))
+        form_layout.addRow(delete_button)
         
         # Add to container
         self.events_container.addWidget(event_form)
     
     def add_article_form(self):
-        # Create a group box for the article form
-        article_form = QGroupBox()
+        article_form = QGroupBox() 
         article_form.setStyleSheet("QGroupBox { border: 1px solid gray; border-radius: 5px; margin-top: 10px; }")
         form_layout = QFormLayout(article_form)
         
@@ -191,40 +176,25 @@ class NewsletterGeneratorGUI(QMainWindow):
         form_layout.addRow("Image URL:", img_input)
         form_layout.addRow("Description:", desc_input)
         
-        # Create buttons
-        buttons_layout = QHBoxLayout()
+        # Store form inputs reference for later collection 
+        form_data = {
+            "url": url_input,
+            "title": title_input,
+            "img": img_input,
+            "desc": desc_input,
+            "form": article_form
+        }
+        self.article_forms.append(form_data)
         
-        article_ref = {"form": article_form}  # Reference to form for the closure
-        
-        def save_article():
-            article = Article(
-                url=url_input.text(),
-                title=title_input.text(),
-                description=desc_input.toPlainText(),
-                img=img_input.text()
-            )
-            self.articles.append(article)
-        
-        def delete_form():
-            self.articles_container.removeWidget(article_ref["form"])
-            article_ref["form"].deleteLater()
-        
-        save_button = QPushButton("Save Article")
-        save_button.clicked.connect(save_article)
-        
+        # Delete button only
         delete_button = QPushButton("Delete")
-        delete_button.clicked.connect(delete_form)
-        
-        buttons_layout.addWidget(save_button)
-        buttons_layout.addWidget(delete_button)
-        
-        form_layout.addRow(buttons_layout)
+        delete_button.clicked.connect(lambda: self.delete_article_form(form_data))
+        form_layout.addRow(delete_button)
         
         # Add to container
         self.articles_container.addWidget(article_form)
     
     def add_opportunity_form(self):
-        # Create a group box for the opportunity form
         opportunity_form = QGroupBox()
         opportunity_form.setStyleSheet("QGroupBox { border: 1px solid gray; border-radius: 5px; margin-top: 10px; }")
         form_layout = QFormLayout(opportunity_form)
@@ -237,43 +207,76 @@ class NewsletterGeneratorGUI(QMainWindow):
         form_layout.addRow("Opportunity Title:", title_input)
         form_layout.addRow("Description:", desc_input)
         
-        # Create buttons
-        buttons_layout = QHBoxLayout()
+        # Store form inputs reference for later collection
+        form_data = {
+            "title": title_input,
+            "desc": desc_input,
+            "form": opportunity_form
+        }
+        self.opportunity_forms.append(form_data)
         
-        opportunity_ref = {"form": opportunity_form}  # Reference to form for the closure
-        
-        def save_opportunity():
-            opportunity = Opportunity(
-                title=title_input.text(),
-                description=desc_input.toPlainText()
-            )
-            self.opportunities.append(opportunity)
-        
-        def delete_form():
-            self.opportunities_container.removeWidget(opportunity_ref["form"])
-            opportunity_ref["form"].deleteLater()
-        
-        save_button = QPushButton("Save Opportunity")
-        save_button.clicked.connect(save_opportunity)
-        
+        # Delete button only
         delete_button = QPushButton("Delete")
-        delete_button.clicked.connect(delete_form)
-        
-        buttons_layout.addWidget(save_button)
-        buttons_layout.addWidget(delete_button)
-        
-        form_layout.addRow(buttons_layout)
+        delete_button.clicked.connect(lambda: self.delete_opportunity_form(form_data))
+        form_layout.addRow(delete_button)
         
         # Add to container
         self.opportunities_container.addWidget(opportunity_form)
     
     def generate_newsletter(self):
         try:
+            # Collect all data from forms
+            events = []
+            for form in self.event_forms:
+                event = Event(
+                    url=form["url"].text(),
+                    title=form["title"].text(),
+                    description=form["desc"].toPlainText(),
+                    time=form["time"].text(),
+                    location=form["location"].text(),
+                    img=form["img"].text()
+                )
+                events.append(event)
+                
+            articles = []
+            for form in self.article_forms:
+                article = Article(
+                    url=form["url"].text(),
+                    title=form["title"].text(),
+                    description=form["desc"].toPlainText(),
+                    img=form["img"].text()
+                )
+                articles.append(article)
+                
+            opportunities = []
+            for form in self.opportunity_forms:
+                opportunity = Opportunity(
+                    title=form["title"].text(),
+                    description=form["desc"].toPlainText()
+                )
+                opportunities.append(opportunity)
+
+            # Generate newsletter with collected data
             from main import generate_newsletter
-            result = generate_newsletter(self.events, self.articles, self.opportunities)
+            result = generate_newsletter(events, articles, opportunities)
             QMessageBox.information(self, "Success", f"Newsletter generated successfully! File saved as {result}")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error generating newsletter: {str(e)}")
+    
+    def delete_event_form(self, form_data):
+        self.events_container.removeWidget(form_data["form"])
+        form_data["form"].deleteLater()
+        self.event_forms.remove(form_data)
+
+    def delete_article_form(self, form_data):
+        self.articles_container.removeWidget(form_data["form"])
+        form_data["form"].deleteLater()
+        self.article_forms.remove(form_data)
+
+    def delete_opportunity_form(self, form_data):
+        self.opportunities_container.removeWidget(form_data["form"])
+        form_data["form"].deleteLater()
+        self.opportunity_forms.remove(form_data)
 
 def launch_gui():
     app = QApplication(sys.argv)
