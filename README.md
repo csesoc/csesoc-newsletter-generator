@@ -3,7 +3,7 @@
 
 1. Export CSESoc Opportunities Sheet as a HTML file and place `Form responses 1.html` into your root directory.
 2. Open up [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events) and save this page locally to `/scrapers/cached_pages/`.
-3. Run `python3 main.py` in root directory and it will generate `soc-announce.html`. This file contains scraped data, so we need to double check its in a presentable format.
+3. Run `python3 main.py [-m | -a | -gui]` in root directory and it will generate `soc-announce.html`. If the `-a` option is ran, this file contains scraped data, so we need to double check its in a presentable format. The `-m` option is a manual command-line entry, and the `-gui` option is a manual GUI entry.
 4. The generated cover photos will link to your local path. Go to the Facebook event page online and open up the cover photo in a new tab and directly link the `src` to this link.
 5. Shorten the event descriptions to something presentable. Try not to go over double the height of the cover photo.
 6. Shorten the article descriptions, usually they are already quite short though.
@@ -33,8 +33,8 @@ Now that we have all our data, the script writes it up nicely into a HTML file. 
 
 
 ### Breaking changes from Facebook
-(Fixed as of Term 2 2023)
-~~This used to be quite automated. However, since around the start of Term 3 of 2022, users that are not logged in cannot see a page's upcoming events, regardless whether the event or page is public. This is why we must now provide the script a saved local copy of [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events).~~ 
+~~(Fixed as of Term 2 2023)~~
+This used to be quite automated. However, since around the start of Term 3 of 2022, users that are not logged in cannot see a page's upcoming events, regardless whether the event or page is public. This is why we must now provide the script a saved local copy of [https://www.facebook.com/csesoc/events](https://www.facebook.com/csesoc/events).
 
 ~~The script can still request event details from any event page - it is only the page showing all upcoming events that is now disabled.~~
 
