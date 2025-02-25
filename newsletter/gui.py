@@ -154,8 +154,6 @@ class NewsletterGeneratorGUI(QMainWindow):
                 img=img_input.text()
             )
             self.events.append(event)
-            # Show confirmation
-            QMessageBox.information(self, "Success", "Event saved successfully!")
         
         def delete_form():
             self.events_container.removeWidget(event_ref["form"])
@@ -206,8 +204,6 @@ class NewsletterGeneratorGUI(QMainWindow):
                 img=img_input.text()
             )
             self.articles.append(article)
-            # Show confirmation
-            QMessageBox.information(self, "Success", "Article saved successfully!")
         
         def delete_form():
             self.articles_container.removeWidget(article_ref["form"])
@@ -252,8 +248,6 @@ class NewsletterGeneratorGUI(QMainWindow):
                 description=desc_input.toPlainText()
             )
             self.opportunities.append(opportunity)
-            # Show confirmation
-            QMessageBox.information(self, "Success", "Opportunity saved successfully!")
         
         def delete_form():
             self.opportunities_container.removeWidget(opportunity_ref["form"])
