@@ -109,7 +109,7 @@ def generate_newsletter(facebook_events, media_articles, opportunities, save_fil
 
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+# CORS(app)  # Enable CORS for all routes
 
 @app.route('/', methods=['GET'])
 def index():
