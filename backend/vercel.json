@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
+  "git": {
+    "deploymentEnabled": {
+      "main": false,
+      "web-deploy": true
+    }
+  }
 }
