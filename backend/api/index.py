@@ -121,7 +121,7 @@ def index():
         }
     })
 
-@app.route('/generate', methods=['POST', 'OPTIONS'])
+@app.route('/generate', methods=['GET', 'POST', 'OPTIONS'])
 def generate():
     # Handle preflight CORS requests
     if request.method == 'OPTIONS':
