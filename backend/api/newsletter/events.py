@@ -1,6 +1,12 @@
 from newsletter.components import add_button, add_divider, add_section_header
-from newsletter.helpers import convert_to_id
 from newsletter.styles import CAPTION, DESC, TITLE
+import re
+
+def convert_to_id(name):
+    id = name.strip()
+    id = re.sub(r"[^\w\s]", '', name)
+    id = re.sub(r"\s+", '-', name)
+    return id
 
 
 def add_event(a, event):

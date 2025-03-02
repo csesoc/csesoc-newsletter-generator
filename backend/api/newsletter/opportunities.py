@@ -1,6 +1,12 @@
-from newsletter.helpers import convert_to_id
 from newsletter.styles import BLUE, DESC, TITLE
 from newsletter.components import add_divider, add_section_header
+import re
+
+def convert_to_id(name):
+    id = name.strip()
+    id = re.sub(r"[^\w\s]", '', name)
+    id = re.sub(r"\s+", '-', name)
+    return id
 
 
 OPPORTUNITIES_HEADER_IMG = "https://i.imgur.com/twzB46W.jpeg"
