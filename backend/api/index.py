@@ -5,7 +5,7 @@ import sys
 from scrapers.facebook import Event
 from scrapers.media import Article
 from scrapers.opportunities import Opportunity
-from main import generate_newsletter
+from backend.main import generate_newsletter
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
