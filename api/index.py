@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import os
@@ -10,6 +9,16 @@ from main import generate_newsletter
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+
+@app.route('/', methods=['GET'])
+def index():
+    """Root endpoint that returns a welcome message."""
+    return jsonify({
+        'message': 'Hi! Welcome to the CSESoc Newsletter Generator API',
+        'endpoints': {
+            'POST /generate': 'Generate a newsletter from provided events, articles, and opportunities'
+        }
+    })
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -38,22 +47,14 @@ def generate():
             description=opportunity['description']
         ) for opportunity in data.get('opportunities', [])]
         
-        # Generate newsletter
-        output_file = generate_newsletter(events, articles, opportunities)
+        # Generate newsletter without saving to file
+        output_str = generate_newsletter(events, articles, opportunities, save_file=False)
         
-        # Return the file path
-        return jsonify({'success': True, 'file': output_file})
+        # Return the HTML content directly
+        return jsonify({'success': True, 'html': output_str})
     
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
-
-@app.route('/download', methods=['GET'])
-def download():
-    file_path = 'soc-announce.html'
-    if os.path.exists(file_path):
-        return send_file(file_path, as_attachment=True)
-    else:
-        return jsonify({'success': False, 'error': 'File not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
