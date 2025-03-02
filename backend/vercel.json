@@ -2,7 +2,8 @@
   "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }],
   "functions": {
     "api/index.py": {
-      "maxDuration": 10
+      "maxDuration": 10,
+      "runtime": "@vercel/python"
     }
   },
   "git": {
@@ -10,11 +11,5 @@
       "main": false,
       "web-deploy": true
     }
-  },
-  "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
-    }
-  ]
+  }
 }
