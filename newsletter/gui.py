@@ -257,7 +257,7 @@ class NewsletterGeneratorGUI(QMainWindow):
                 opportunities.append(opportunity)
 
             # Generate newsletter with collected data
-            from backend.main import generate_newsletter
+            from main import generate_newsletter
             result = generate_newsletter(events, articles, opportunities)
             QMessageBox.information(self, "Success", f"Newsletter generated successfully! File saved as {result}")
         except Exception as e:
