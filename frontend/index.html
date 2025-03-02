@@ -712,13 +712,6 @@
             downloadLink.innerHTML = `<p>Generating newsletter...</p>`;
             downloadLink.style.display = "block";
 
-            // Hide preview container if it was previously shown
-            const previewContainer =
-              document.getElementById("preview-container");
-            if (previewContainer) {
-              previewContainer.style.display = "none";
-            }
-
             // Collect events data
             const eventForms = eventsContainer.querySelectorAll(".form-card");
             const events = Array.from(eventForms).map((form) => {
@@ -775,46 +768,16 @@
               .then((response) => response.json())
               .then((data) => {
                 if (data.success) {
-                  // Get or create preview container
-                  let previewContainer =
-                    document.getElementById("preview-container");
-                  if (!previewContainer) {
-                    previewContainer = document.createElement("div");
-                    previewContainer.id = "preview-container";
-                    previewContainer.style.marginTop = "20px";
-                    document.body.insertBefore(
-                      previewContainer,
-                      downloadLink.nextSibling
-                    );
-                  }
-
                   // Update download link to actually be a download button for the content
                   const htmlContent = data.html;
                   const blob = new Blob([htmlContent], { type: "text/html" });
                   const url = URL.createObjectURL(blob);
 
                   downloadLink.innerHTML = `
-          <a href="${url}" download="newsletter.html">Download Newsletter HTML</a>
-          <p>Right-click and select "Save as" to download the newsletter</p>
-        `;
+                    <a href="${url}" download="newsletter.html">Download Newsletter HTML</a>
+                    <p>Right-click and select "Save as" to download the newsletter</p>
+                  `;
                   downloadLink.style.display = "block";
-
-                  // Create preview section
-                  previewContainer.innerHTML = `
-          <h3>Newsletter Preview</h3>
-          <div style="border: 1px solid #ddd; border-radius: 5px; padding: 0; margin-top: 10px; height: 600px; overflow: auto;">
-            <iframe id="newsletter-preview" style="width: 100%; height: 100%; border: none;"></iframe>
-          </div>
-        `;
-                  previewContainer.style.display = "block";
-
-                  // Display the HTML in the iframe
-                  const previewFrame =
-                    document.getElementById("newsletter-preview");
-                  previewFrame.srcdoc = htmlContent;
-
-                  // Scroll to preview container
-                  previewContainer.scrollIntoView({ behavior: "smooth" });
                 } else {
                   alert("Error: " + data.error);
                 }
