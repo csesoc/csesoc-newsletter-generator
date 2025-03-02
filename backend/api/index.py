@@ -109,7 +109,7 @@ def generate_newsletter(facebook_events, media_articles, opportunities, save_fil
 
 
 app = Flask(__name__)
-# CORS(app)  # Enable CORS for all routes
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/', methods=['GET'])
 def index():
@@ -121,8 +121,11 @@ def index():
         }
     })
 
-@app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=['POST', 'OPTIONS'])
 def generate():
+    # Handle preflight CORS requests
+    if request.method == 'OPTIONS':
+        return jsonify({'success': True}), 200
     try:
         data = request.json
         
