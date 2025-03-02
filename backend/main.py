@@ -23,7 +23,7 @@ CMD_OPTIONS = {'-m', '-a', '-gui'}
 
 VALID_CMD_LEN = {1, 2}
 
-def generate_newsletter(facebook_events, media_articles, opportunities):
+def generate_newsletter(facebook_events, media_articles, opportunities, save_file=True):
     a = Airium()
     a("<!DOCTYPE html>")
     with a.html(
@@ -90,10 +90,13 @@ def generate_newsletter(facebook_events, media_articles, opportunities):
                             with a.tr().td():
                                 add_footer(a)
 
-    with open("soc-announce.html", "w") as f:
-        f.write(str(a))
-    
-    return "soc-announce.html"
+    if save_file:
+        with open("soc-announce.html", "w") as f:
+            f.write(str(a))
+        return "soc-announce.html"
+
+    return str(a)
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
