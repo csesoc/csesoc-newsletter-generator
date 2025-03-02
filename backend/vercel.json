@@ -10,11 +10,5 @@
       "main": false,
       "web-deploy": true
     }
-  },
-  "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
-    }
-  ]
+  }
 }
