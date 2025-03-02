@@ -2,9 +2,9 @@ from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import os
 import sys
-from scrapers.facebook import Event
-from scrapers.media import Article
-from scrapers.opportunities import Opportunity
+from .scrapers.facebook import Event
+from .scrapers.media import Article
+from .scrapers.opportunities import Opportunity
 
 
 
@@ -12,16 +12,16 @@ from scrapers.opportunities import Opportunity
 
 from airium import Airium
 
-from scrapers.facebook import get_upcoming_events, man_get_upcoming_events
-from scrapers.media import get_articles, man_get_articles
-from scrapers.opportunities import get_opportunities, man_get_opportunities
+from .scrapers.facebook import get_upcoming_events, man_get_upcoming_events
+from .scrapers.media import get_articles, man_get_articles
+from .scrapers.opportunities import get_opportunities, man_get_opportunities
 
-from newsletter.styles import LIGHT_GREY
-from newsletter.header import add_header
-from newsletter.events import add_events
-from newsletter.articles import add_articles
-from newsletter.opportunities import add_opportunities
-from newsletter.footer import add_footer
+from .newsletter.styles import LIGHT_GREY
+from .newsletter.header import add_header
+from .newsletter.events import add_events
+from .newsletter.articles import add_articles
+from .newsletter.opportunities import add_opportunities
+from .newsletter.footer import add_footer
 
 TABLE_KWARGS = {
     "width": "100%",

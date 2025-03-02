@@ -1,5 +1,5 @@
-from newsletter.styles import DARK_GREY, SOCIALS
-from newsletter.components import add_section_header
+from .styles import DARK_GREY, SOCIALS
+from .components import add_section_header
 
 
 SPONSORS_IMAGE = "https://i.imgur.com/FuPFHV5.jpeg"

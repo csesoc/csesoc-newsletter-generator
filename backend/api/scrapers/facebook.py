@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 from dotenv import load_dotenv
 
-from scrapers.helpers import remove_attrs, input_sanitise, HEADERS
+from .helpers import remove_attrs, input_sanitise, HEADERS
 
 # Mobile Facebook pages don't use JavaScript, making it easier to scrape
 MBASIC_FACEBOOK = "https://mbasic.facebook.com"

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from scrapers.helpers import input_sanitise
+from .helpers import input_sanitise
 
 MEDIA_WEBSITE = "https://media.csesoc.org.au"
 

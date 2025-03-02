@@ -4,7 +4,7 @@
 import os
 from bs4 import BeautifulSoup
 
-from scrapers.helpers import remove_attrs, input_sanitise
+from .helpers import remove_attrs, input_sanitise
 
 FILE_NAME = "Form responses 1.html"
 

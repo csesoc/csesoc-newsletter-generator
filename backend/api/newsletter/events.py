@@ -1,5 +1,5 @@
-from newsletter.components import add_button, add_divider, add_section_header
-from newsletter.styles import CAPTION, DESC, TITLE
+from .components import add_button, add_divider, add_section_header
+from .styles import CAPTION, DESC, TITLE
 import re
 
 def convert_to_id(name):

@@ -1,5 +1,5 @@
-from newsletter.styles import BLUE, DESC, TITLE
-from newsletter.components import add_divider, add_section_header
+from .styles import BLUE, DESC, TITLE
+from .components import add_divider, add_section_header
 import re
 
 def convert_to_id(name):
