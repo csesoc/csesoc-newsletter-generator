@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSESoc Newsletter Generator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid #ddd;
+        margin: 20px 0;
+      }
+
+      section {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .form-card {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #f9f9f9;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      textarea {
+        height: 80px;
+        resize: vertical;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 15px;
+        font-size: 14px;
+      }
+
+      .delete-btn {
+        background-color: #ff4d4d;
+        color: white;
+        margin-top: 10px;
+      }
+
+      .add-btn {
+        background-color: #4d94ff;
+        color: white;
+        margin-top: 10px;
+      }
+
+      #generate-btn {
+        background-color: #4caf50;
+        color: white;
+        font-size: 16px;
+        padding: 12px 20px;
+        margin: 20px auto;
+        display: block;
+        width: 200px;
+      }
+
+      #scan-btn {
+        background-color: #ff9800;
+        color: white;
+        font-size: 16px;
+        padding: 12px 20px;
+        margin: 20px auto;
+        display: block;
+        width: 200px;
+      }
+
+      .delete-btn:hover,
+      .add-btn:hover,
+      #generate-btn:hover,
+      #scan-btn:hover {
+        opacity: 0.9;
+      }
+
+      #download-link {
+        text-align: center;
+        display: none;
+        margin: 10px 0;
+      }
+
+      #download-link a {
+        color: #4caf50;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      #download-link a:hover {
+        text-decoration: underline;
+      }
+
+      pre {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        white-space: pre-wrap;
+        font-family: monospace;
+        display: none;
+        margin-top: 20px;
+        max-height: 400px;
+        overflow: auto;
+      }
+      
+      .status-bar {
+        background-color: #f1f1f1;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .status-item {
+        font-size: 14px;
+      }
+      
+      .status-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+        background-color: #cccccc;
+      }
+      
+      .status-indicator.active {
+        background-color: #4caf50;
+      }
+      
+      .status-indicator.error {
+        background-color: #ff4d4d;
+      }
+      
+      .status-message {
+        margin-top: 5px;
+        font-size: 12px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>CSESoc Newsletter Generator</h1>
+        <p>Add events, articles, and opportunities for the newsletter</p>
+        <hr />
+      </header>
+
+      <div class="content">
+        <!-- Add a status bar for showing scan progress -->
+        <div class="status-bar" id="status-bar" style="display: none;">
+          <div class="status-item">
+            <span class="status-indicator" id="facebook-indicator"></span>
+            Facebook Events
+          </div>
+          <div class="status-item">
+            <span class="status-indicator" id="media-indicator"></span>
+            Media Articles
+          </div>
+          <div class="status-item">
+            <span class="status-indicator" id="youtube-indicator"></span>
+            YouTube
+          </div>
+          <div class="status-item">
+            <span class="status-indicator" id="opportunities-indicator"></span>
+            Opportunities
+          </div>
+        </div>
+        <div class="status-message" id="status-message"></div>
+        
+        <!-- Add a button to scan pages automatically -->
+        <button id="scan-btn">Scan Pages Automatically</button>
+
+        <section id="events-section">
+          <h2>Events</h2>
+          <div id="events-container"></div>
+          <button class="add-btn" id="add-event-btn">Add Event</button>
+        </section>
+
+        <section id="articles-section">
+          <h2>Media Articles</h2>
+          <div id="articles-container"></div>
+          <button class="add-btn" id="add-article-btn">Add Article</button>
+        </section>
+
+        <section id="opportunities-section">
+          <h2>Opportunities</h2>
+          <div id="opportunities-container"></div>
+          <button class="add-btn" id="add-opportunity-btn">
+            Add Opportunity
+          </button>
+        </section>
+
+        <button id="generate-btn">Generate Newsletter</button>
+        <div id="download-link"></div>
+        <div id="preview-container" style="display: none">
+          <h2 style="margin-top: 20px; text-align: center">
+            Newsletter Preview
+          </h2>
+          <div
+            id="newsletter-preview"
+            style="
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              margin-top: 15px;
+              overflow: auto;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

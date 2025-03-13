@@ -1,0 +1,39 @@
+{
+  "name": "CSESoc Newsletter Generator Helper",
+  "description": "Automatically collects data for the CSESoc newsletter generator",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.facebook.com/*",
+    "https://media.csesoc.org.au/*",
+    "https://www.youtube.com/*",
+    "https://docs.google.com/spreadsheets/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html", "index.js", "*.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  }
+}
