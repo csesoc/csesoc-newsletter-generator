@@ -2,7 +2,7 @@ from .styles import DARK_GREY, SOCIALS
 from .components import add_section_header
 
 
-SPONSORS_IMAGE = "https://i.imgur.com/FuPFHV5.jpeg"
+SPONSORS_IMAGE = "https://i.imgur.com/pr09Qdf.jpeg"
 
 LINKS = {
     "Facebook Page": "https://www.facebook.com/csesoc",
