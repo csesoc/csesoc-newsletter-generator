@@ -1,8 +1,8 @@
-from newsletter.styles import DARK_GREY, SOCIALS
-from newsletter.components import add_section_header
+from .styles import DARK_GREY, SOCIALS
+from .components import add_section_header
 
 
-SPONSORS_IMAGE = "https://i.imgur.com/J2tRMZO.png"
+SPONSORS_IMAGE = "https://i.imgur.com/Z48rXj2.png"
 
 LINKS = {
     "Facebook Page": "https://www.facebook.com/csesoc",
@@ -11,7 +11,7 @@ LINKS = {
     "TikTok": "https://www.tiktok.com/@csesoc",
     "LinkedIn": "https://www.linkedin.com/company/csesoc",
     "YouTube": "https://www.youtube.com/channel/UC1JHpRrf9j5IKluzXhprUJg/",
-    "Discord": "https://cseso.cc/discord",
+    "Discord": "https://bit.ly/CSESocDiscord",
 }
 
 
@@ -61,7 +61,7 @@ def add_socials(a):
                 )
 
             with a.tr().td():
-                a.i(_t="Copyright © 2023 CSESoc UNSW. All rights reserved.")
+                a.i(_t="Copyright © 2026 CSESoc UNSW. All rights reserved.")
 
 
 def add_footer(a):

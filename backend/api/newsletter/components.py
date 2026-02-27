@@ -1,4 +1,4 @@
-from newsletter.styles import BUTTON, DIVIDER, SECTION_HEADER
+from .styles import BUTTON, DIVIDER, SECTION_HEADER
 
 
 def add_divider(a):
